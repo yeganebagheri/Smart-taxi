@@ -1,0 +1,12 @@
+C:\Uni\Uni Projects\Online-Taxi\Core\bin\Release\net5.0\Core.deps.json
+C:\Uni\Uni Projects\Online-Taxi\Core\bin\Release\net5.0\Core.dll
+C:\Uni\Uni Projects\Online-Taxi\Core\bin\Release\net5.0\Core.pdb
+C:\Uni\Uni Projects\Online-Taxi\Core\obj\Release\net5.0\Core.csproj.AssemblyReference.cache
+C:\Uni\Uni Projects\Online-Taxi\Core\obj\Release\net5.0\Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Uni\Uni Projects\Online-Taxi\Core\obj\Release\net5.0\Core.AssemblyInfoInputs.cache
+C:\Uni\Uni Projects\Online-Taxi\Core\obj\Release\net5.0\Core.AssemblyInfo.cs
+C:\Uni\Uni Projects\Online-Taxi\Core\obj\Release\net5.0\Core.csproj.CoreCompileInputs.cache
+C:\Uni\Uni Projects\Online-Taxi\Core\obj\Release\net5.0\Core.dll
+C:\Uni\Uni Projects\Online-Taxi\Core\obj\Release\net5.0\refint\Core.dll
+C:\Uni\Uni Projects\Online-Taxi\Core\obj\Release\net5.0\Core.pdb
+C:\Uni\Uni Projects\Online-Taxi\Core\obj\Release\net5.0\ref\Core.dll

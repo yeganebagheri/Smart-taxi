@@ -1,0 +1,5 @@
+C:\Uni\Uni Projects\Online-Taxi\3-Infrastructure\obj\Debug\net5.0\3-Infrastructure.csproj.AssemblyReference.cache
+C:\Uni\Uni Projects\Online-Taxi\3-Infrastructure\obj\Debug\net5.0\3-Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Uni\Uni Projects\Online-Taxi\3-Infrastructure\obj\Debug\net5.0\3-Infrastructure.AssemblyInfoInputs.cache
+C:\Uni\Uni Projects\Online-Taxi\3-Infrastructure\obj\Debug\net5.0\3-Infrastructure.AssemblyInfo.cs
+C:\Uni\Uni Projects\Online-Taxi\3-Infrastructure\obj\Debug\net5.0\3-Infrastructure.csproj.CoreCompileInputs.cache

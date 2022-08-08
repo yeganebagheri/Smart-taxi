@@ -1,0 +1,17 @@
+C:\Uni\Uni Projects\Online-Taxi\Application\bin\Release\net5.0\Application.deps.json
+C:\Uni\Uni Projects\Online-Taxi\Application\bin\Release\net5.0\Application.dll
+C:\Uni\Uni Projects\Online-Taxi\Application\bin\Release\net5.0\Application.pdb
+C:\Uni\Uni Projects\Online-Taxi\Application\bin\Release\net5.0\Core.dll
+C:\Uni\Uni Projects\Online-Taxi\Application\bin\Release\net5.0\Infrastructure.dll
+C:\Uni\Uni Projects\Online-Taxi\Application\bin\Release\net5.0\Infrastructure.pdb
+C:\Uni\Uni Projects\Online-Taxi\Application\bin\Release\net5.0\Core.pdb
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\Application.csproj.AssemblyReference.cache
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\Application.AssemblyInfoInputs.cache
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\Application.AssemblyInfo.cs
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\Application.csproj.CoreCompileInputs.cache
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\Application.csproj.CopyComplete
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\Application.dll
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\refint\Application.dll
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\Application.pdb
+C:\Uni\Uni Projects\Online-Taxi\Application\obj\Release\net5.0\ref\Application.dll
