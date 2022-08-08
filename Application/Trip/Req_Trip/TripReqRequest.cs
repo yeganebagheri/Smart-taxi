@@ -1,8 +1,10 @@
 ﻿
 using Core.Entities;
+using Dapper;
 using FluentResults;
 using MediatR;
 using System;
+using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,11 +24,13 @@ namespace Application.Trip.Req_Trip
         {
             private readonly Infrastructure.IUnitOfWork _unitOfWork;
             private readonly IMediator _mediator;
+            private readonly IDbConnection _dbConnection;
 
-            public TripReqRequestHandler(IMediator mediator, Infrastructure.IUnitOfWork unitOfWork)
+            public TripReqRequestHandler(IDbConnection dbConnection,IMediator mediator, Infrastructure.IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
                 _mediator = mediator;
+                _dbConnection = dbConnection;
             }
 
             public async Task<Result> Handle(TripReqRequest request, CancellationToken cancellationToken)
@@ -68,13 +72,12 @@ namespace Application.Trip.Req_Trip
                     firstPrice = firstPrice,
                     passesNum = request.passesNum
                 };
-                //if (trip_req.passesNum == 0)
-                //{
-                //    // add to list of tripRequest which Driver can see
-                    
-                //   await _mediator.Send(trip_req);
 
-                //}
+                //get nearest trip request with source
+                var nearestOrigins=await _unitOfWork.TripReq.GetNearestOrigins(request.sourceAndDest.SLatitude , request.sourceAndDest.SLongitude);
+                
+                // send to hub for driver
+
 
                 await _unitOfWork.TripReq.InsertTripReq(trip_req);
 

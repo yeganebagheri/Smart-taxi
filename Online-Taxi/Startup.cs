@@ -23,6 +23,8 @@ using static Application.Auth.RegisterRequest;
 using Application;
 using _3_Infrastructure.Repositories.Trip;
 using Online_Taxi.Hubs;
+using _3_Infrastructure.Repositories.Passenger;
+using _3_Infrastructure.Repositories.Driver;
 
 namespace Online_Taxi
 {
@@ -60,7 +62,8 @@ namespace Online_Taxi
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
             services.AddScoped(typeof(ILocationRepository), typeof(LocationRepository));
             services.AddScoped(typeof(ITripReqRepository), typeof(TripReqRepository));
-            //services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped(typeof(IPassengerRepository), typeof(PassengerRepository));
+            services.AddScoped(typeof(IDriverRepository), typeof(DriverRepository));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddHttpContextAccessor();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();

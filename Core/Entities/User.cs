@@ -13,10 +13,11 @@ namespace Core.Entities
     {
         [Key]
         public Guid Id { get; set; }
-        public bool gender { get; set; }
+        public int gender { get; set; }
         public string username { get; set; }
         public string phoneNo { get; set; }
         public string Password { get; set; }
-        public bool role { get; set; }
+        public int role { get; set; }
+       
     }
 }

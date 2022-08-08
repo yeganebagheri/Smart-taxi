@@ -1,4 +1,6 @@
-﻿using Dapper.FastCrud;
+﻿using Core.Entities;
+using Dapper;
+using Dapper.FastCrud;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,5 +24,25 @@ namespace _3_Infrastructure.Repositories.Trip
 
 
         }
+
+        public async Task<IEnumerable<Trip_req>> GetNearestOrigins(double lat1, double long2)
+        {
+
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Lat1", lat1);
+            parameters.Add("@Long1", long2);
+
+            var NearestTripReqList = await _dbConnection.QueryAsync<Trip_req>(
+             sql: "[dbo].[get_nearest_origins]",
+                param: parameters,
+                 commandType: CommandType.StoredProcedure);
+
+            return NearestTripReqList;
+
+
+
+        }
+
+
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using wallet.lib.BaseApi.ControllerConfig;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using System;
 
 namespace Api.Controllers
 {
@@ -36,10 +37,10 @@ namespace Api.Controllers
        
         [HttpPost("CreateAdmin")]
         
-        public async Task<ActionResult<FluentResults.Result>> CreateAdmin(RegisterRequest request)
+        public async Task<ActionResult<FluentResults.Result<Guid>>> CreateAdmin(RegisterRequest request)
         {
 
-            FluentResults.Result result = await Mediator.Send(request);
+            FluentResults.Result<Guid> result = await Mediator.Send(request);
 
             if (result.IsSuccess)
             {
