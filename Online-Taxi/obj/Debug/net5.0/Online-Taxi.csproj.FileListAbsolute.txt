@@ -141,3 +141,5 @@ C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\refint\Online-
 C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\Online-Taxi.pdb
 C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\Online-Taxi.genruntimeconfig.cache
 C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\ref\Online-Taxi.dll
+C:\Users\maryam\Documents\UniProject\Online-Taxi\bin\Debug\net5.0\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\maryam\Documents\UniProject\Online-Taxi\bin\Debug\net5.0\Microsoft.Owin.Host.SystemWeb.dll
