@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj": {}
+    "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj": {}
   },
   "projects": {
-    "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj": {
+    "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\98939\\.nuget\\packages\\",
-        "outputPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\obj\\",
+        "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\maryam\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\maryam\\Documents\\UniProject\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\98939\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\maryam\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
