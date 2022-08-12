@@ -28,6 +28,7 @@ using _3_Infrastructure.Repositories.Driver;
 using _3_Infrastructure.Repositories.Driver.Driver_req;
 using _3_Infrastructure.Repositories.Pre_Trip;
 using static _3_Infrastructure.Repositories.Pre_Trip.IPreTripRepository;
+using Application.Hubs;
 
 namespace Online_Taxi
 {
@@ -56,10 +57,11 @@ namespace Online_Taxi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Online_Taxi", Version = "v1" });
             });
-            
+
             //var assembly = Assembly.GetExecutingAssembly();
             //services.AddMediatR(assembly);
             //services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddSignalR();
             services.AddApplication();
             services.AddMediatR(typeof(RegisterRequestHandler).GetTypeInfo().Assembly);
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
@@ -99,6 +101,7 @@ namespace Online_Taxi
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<TripListHub>("/TripList");
             });
         }
     }
