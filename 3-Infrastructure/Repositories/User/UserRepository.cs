@@ -47,8 +47,6 @@ namespace Infrastructure.Repositories.User
 
 
 
-        
-
         public async Task<Core.Entities.User> GetUserByPhone(string phoneNo)
         {
             DynamicParameters parameters = new();
@@ -68,8 +66,6 @@ namespace Infrastructure.Repositories.User
 
             
         }
-
-
 
     }
 }

@@ -414,6 +414,7 @@
           "lib/netstandard2.1/MediatR.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
+      "Microsoft.AspNet.SignalR/2.4.3": {},
       "Microsoft.AspNet.SignalR.Core/2.4.3": {
         "runtime": {
           "lib/net45/Microsoft.AspNet.SignalR.Core.dll": {
@@ -2148,11 +2149,14 @@
       },
       "Application/1.0.0": {
         "dependencies": {
+          "Core": "1.0.0",
           "Dapper.FastCrud": "3.0.46",
           "FluentResults": "3.8.0",
           "Infrastructure": "1.0.0",
           "MediatR": "10.0.1",
           "MediatR.Extensions.Microsoft.DependencyInjection": "10.0.1",
+          "Microsoft.AspNet.SignalR": "2.4.3",
+          "Microsoft.AspNet.SignalR.Core": "2.4.3",
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Swashbuckle.AspNetCore": "6.4.0",
           "wallet.lib.BaseApi": "8.1.0",
@@ -3938,6 +3942,13 @@
       "sha512": "sha512-mYdfMvpkahCAj4tRfBoeMlUBZa2WthaONdQ4y5TtIyxcZYb5e7AE7c1eITTZVWcQhguxvD8AdExdaiAW6RhrVA==",
       "path": "mediatr.extensions.microsoft.dependencyinjection/10.0.1",
       "hashPath": "mediatr.extensions.microsoft.dependencyinjection.10.0.1.nupkg.sha512"
+    },
+    "Microsoft.AspNet.SignalR/2.4.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-F2Q1g0Imd4Nm8AeUkJuLSMNh/Nae48tq9rq3bMxnC88I+IBfiZ7l1lw4gFeM6pCm1IIaOVRHyEM/mRKUvsmxbQ==",
+      "path": "microsoft.aspnet.signalr/2.4.3",
+      "hashPath": "microsoft.aspnet.signalr.2.4.3.nupkg.sha512"
     },
     "Microsoft.AspNet.SignalR.Core/2.4.3": {
       "type": "package",

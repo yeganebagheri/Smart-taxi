@@ -19,10 +19,7 @@ namespace _3_Infrastructure.Repositories.Trip
         }
         public  async Task InsertTripReq(Core.Entities.Trip_req trip_req)
         {
-
             await _dbConnection.InsertAsync<Core.Entities.Trip_req>(trip_req);
-
-
         }
 
         public async Task<IEnumerable<Trip_req>> GetNearestOrigins(double lat1, double long2)
@@ -42,6 +39,27 @@ namespace _3_Infrastructure.Repositories.Trip
 
 
         }
+
+
+        public async Task<IEnumerable<Trip_req>> GetNearestDest(double lat1, double long2)
+        {
+
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Lat1", lat1);
+            parameters.Add("@Long1", long2);
+
+            var NearestTripReqList = await _dbConnection.QueryAsync<Trip_req>(
+             sql: "[dbo].[get_nearest_destinations]",
+                param: parameters,
+                 commandType: CommandType.StoredProcedure);
+
+            return NearestTripReqList;
+
+
+
+        }
+
+
 
 
     }

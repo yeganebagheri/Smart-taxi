@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "c2EBGr6ay3VeBQHcQh+TR+fmzaSsEdAcI3WkARGgjnAhnOj8wHOUNyqSTU1l/k5DJ/3yTxdnYUnl0c2kUyFuLw==",
+  "dgSpecHash": "87XwZAp0IMpcWlc+xv87Xx5TmIDdxggLxsiq/vOupRw4IxDzVXsn8MsK3lRSzmIAPJOGAHqe80mcjGMTHtar4Q==",
   "success": true,
   "projectFilePath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Application\\Application.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,8 @@
     "C:\\Users\\98939\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
     "C:\\Users\\98939\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",
     "C:\\Users\\98939\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\10.0.1\\mediatr.extensions.microsoft.dependencyinjection.10.0.1.nupkg.sha512",
+    "C:\\Users\\98939\\.nuget\\packages\\microsoft.aspnet.signalr\\2.4.3\\microsoft.aspnet.signalr.2.4.3.nupkg.sha512",
+    "C:\\Users\\98939\\.nuget\\packages\\microsoft.aspnet.signalr.core\\2.4.3\\microsoft.aspnet.signalr.core.2.4.3.nupkg.sha512",
     "C:\\Users\\98939\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\98939\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\98939\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
@@ -194,5 +196,16 @@
     "C:\\Users\\98939\\.nuget\\packages\\wallet.lib.baseapi\\8.1.0\\wallet.lib.baseapi.8.1.0.nupkg.sha512",
     "C:\\Users\\98939\\.nuget\\packages\\wallet.lib.dapper\\6.3.0\\wallet.lib.dapper.6.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.AspNet.SignalR.Core 2.4.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.AspNet.SignalR.Core",
+      "targetGraphs": [
+        "net5.0"
+      ]
+    }
+  ]
 }

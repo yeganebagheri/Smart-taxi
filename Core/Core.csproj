@@ -15,8 +15,4 @@
     <PackageReference Include="wallet.lib.dapper" Version="6.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\DataModels\" />
-  </ItemGroup>
-
 </Project>

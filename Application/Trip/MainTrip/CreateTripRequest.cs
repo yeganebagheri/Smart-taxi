@@ -1,5 +1,7 @@
-﻿using FluentResults;
+﻿using Application.Hubs;
+using FluentResults;
 using MediatR;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +19,17 @@ namespace Application.Trip.MainTrip
 
         public string price { get; set; }
 
+        //private readonly IHubContext<TripListHub> _hub;
+
         public class CreateTripRequestHandler : IRequestHandler<CreateTripRequest, Result>
         {
             private readonly Infrastructure.IUnitOfWork _unitOfWork;
+            private readonly IHubContext<Hub> _hub;
 
-            public CreateTripRequestHandler(Infrastructure.IUnitOfWork unitOfWork)
+            public CreateTripRequestHandler(Infrastructure.IUnitOfWork unitOfWork/*, IHubContext<TripListHub> hub*/)
             {
                 _unitOfWork = unitOfWork;
+              // _hub = hub;
             }
 
             public async Task<Result> Handle(CreateTripRequest request, CancellationToken cancellationToken)
@@ -32,7 +38,7 @@ namespace Application.Trip.MainTrip
 
                 
 
-                Core.Entities.Trip trip_req = new()
+                Core.Entities.Trip trip = new()
                 {
                     DriverId = request.DriverId,
                     isCancled = request.isCancled,
@@ -40,6 +46,9 @@ namespace Application.Trip.MainTrip
                   
                 };
                 //await _unitOfWork.Trips.InsertTrip(trip);
+                // send to hub for driver
+                //await TripListHub.SendUsersConnected(trip);
+
 
                 result.WithSuccess("ثبت نام انجام شد!");
 
