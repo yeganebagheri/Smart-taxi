@@ -103,7 +103,10 @@ namespace Online_Taxi
             }
 
             app.UseHttpsRedirection();
-
+            app.UseCors(x => x
+                .AllowAnyOrigin() // allow any origin
+                .AllowAnyMethod()
+                .AllowAnyHeader());
             app.UseRouting();
             app.UseCors("MyPolicy");
             app.UseAuthorization();
