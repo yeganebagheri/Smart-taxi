@@ -1,5 +1,7 @@
 ﻿using _3_Infrastructure.Repositories.Driver;
+using _3_Infrastructure.Repositories.Driver.Driver_req;
 using _3_Infrastructure.Repositories.Passenger;
+using _3_Infrastructure.Repositories.Pre_Trip;
 using _3_Infrastructure.Repositories.Trip;
 using Infrastructure.Repositories.User;
 using System;
@@ -14,18 +16,21 @@ namespace Infrastructure
         public IUserRepository Users { get; }
         public ITripReqRepository TripReq { get; }
         public IDbConnection DbConnection { get; }
-        
+        public ISubPreTripRepository SubPreTripRepository { get; }
         public ILocationRepository LocRep { get; }
-
+        public IPreTripRepository PreTripRepository { get; }
         public IDriverRepository DriverRep { get; }
         public IPassengerRepository passengerRep { get; }
 
+
         public UnitOfWork(
             ILocationRepository locRep,
+            IPreTripRepository preTripRepository,
             IDriverRepository driverRepository,
             IUserRepository usersRepository,
             IPassengerRepository PassengerRepository,
             ITripReqRepository TripsRepository,
+            ISubPreTripRepository subPreTripRepository,
            IDbConnection dbConnection)
 
 
@@ -35,7 +40,9 @@ namespace Infrastructure
             DbConnection = dbConnection;
             LocRep = locRep;
             passengerRep = PassengerRepository;
-            DriverRep = driverRepository;
+            SubPreTripRepository = subPreTripRepository;
+            PreTripRepository = preTripRepository;
+
 
         }
 

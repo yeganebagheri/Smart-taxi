@@ -25,6 +25,9 @@ using _3_Infrastructure.Repositories.Trip;
 using Online_Taxi.Hubs;
 using _3_Infrastructure.Repositories.Passenger;
 using _3_Infrastructure.Repositories.Driver;
+using _3_Infrastructure.Repositories.Driver.Driver_req;
+using _3_Infrastructure.Repositories.Pre_Trip;
+using static _3_Infrastructure.Repositories.Pre_Trip.IPreTripRepository;
 
 namespace Online_Taxi
 {
@@ -63,7 +66,9 @@ namespace Online_Taxi
             services.AddScoped(typeof(ILocationRepository), typeof(LocationRepository));
             services.AddScoped(typeof(ITripReqRepository), typeof(TripReqRepository));
             services.AddScoped(typeof(IPassengerRepository), typeof(PassengerRepository));
-            services.AddScoped(typeof(IDriverRepository), typeof(DriverRepository));
+            services.AddScoped(typeof(IDriverRepository), typeof(DriverRepository)); 
+            services.AddScoped(typeof(ISubPreTripRepository), typeof(SubPreTripRepository)); 
+            services.AddScoped(typeof(IPreTripRepository), typeof(PreTripRepository));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddHttpContextAccessor();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
