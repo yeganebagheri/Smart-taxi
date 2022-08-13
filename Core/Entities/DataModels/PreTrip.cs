@@ -8,6 +8,7 @@ namespace Core.Entities.DataModels
 {
     public class PreTrip
     {
+        public Guid Id { get; set; }
         public Guid SubPreTrip1Id { get; set; }
         public Guid? SubPreTrip2Id { get; set; }
         public Guid? SubPreTrip3Id { get; set; }

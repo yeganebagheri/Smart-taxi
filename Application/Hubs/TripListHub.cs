@@ -23,6 +23,7 @@ namespace Application.Hubs
         // get location of driver
         public async Task SendRequest(DriverReqRequest driverReq)
         {
+
             var res =_mediator.Send(driverReq);
            // return message;
             await Clients.Client(Context.ConnectionId).SendAsync("broadcastTripList", res);

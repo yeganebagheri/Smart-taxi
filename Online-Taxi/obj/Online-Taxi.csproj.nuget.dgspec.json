@@ -374,6 +374,10 @@
             "wallet.lib.dapper": {
               "target": "Package",
               "version": "[6.3.0, )"
+            },
+            "wallet.lib.logger": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             }
           },
           "imports": [
