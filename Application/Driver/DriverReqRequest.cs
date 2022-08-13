@@ -68,7 +68,7 @@ namespace Application.Driver
                 //await _unitOfWork.DriverReqRepository.InsertDriverReq(driver_req);
 
                 //get PreTrips which have IsProcessed = false
-                var preTrips = _dbConnection.Query<PreTrip>("SELECT *  FROM [dbo].[PreTrip] pt where pt.IsProcessed=false ");
+                var preTrips = _dbConnection.Query<PreTrip>("SELECT *  FROM [dbo].[PreTrip] pt where pt.IsProcessed=0 ");
                 var preTripsList = preTrips.AsList();
                 List<PreTrip> ListpreTrips = new List<PreTrip>();
                 foreach(var preTrip in preTripsList)

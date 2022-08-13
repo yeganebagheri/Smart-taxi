@@ -29,6 +29,7 @@ using _3_Infrastructure.Repositories.Driver.Driver_req;
 using _3_Infrastructure.Repositories.Pre_Trip;
 using static _3_Infrastructure.Repositories.Pre_Trip.IPreTripRepository;
 using Application.Hubs;
+//using Api.Middlewares;
 
 namespace Online_Taxi
 {
@@ -51,6 +52,11 @@ namespace Online_Taxi
             //           .AllowAnyHeader();
 
             //}));
+            services.AddSignalR(options =>
+            {
+                options.EnableDetailedErrors = true;
+            });
+
             services.AddCors(options => options.AddPolicy("MyPolicy",
             builder =>
             {
@@ -105,7 +111,7 @@ namespace Online_Taxi
             //    routes.MapHub<General>("/hubs/general");
             //});
             app.UseHttpsRedirection();
-           
+            //app.UseMiddleware<LoggerMiddleware>();
             app.UseRouting();
             
             app.UseAuthorization();
