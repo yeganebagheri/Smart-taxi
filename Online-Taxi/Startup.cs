@@ -46,12 +46,11 @@ namespace Online_Taxi
         {
             //services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             //{
-            //    builder.WithOrigins("http://localhost:3000")
+            //    builder/*.AllowAnyOrigin()*/
             //           .AllowAnyMethod()
             //           .AllowAnyHeader();
 
             //}));
-
             services.AddCors(options => options.AddPolicy("MyPolicy",
             builder =>
             {
@@ -60,7 +59,6 @@ namespace Online_Taxi
                        .SetIsOriginAllowed((host) => true)
                        .AllowCredentials();
             }));
-
             services.AddMediatR(typeof(Startup));
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -101,14 +99,15 @@ namespace Online_Taxi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Online_Taxi v1"));
             }
-
-            app.UseHttpsRedirection();
-            //app.UseCors(x => x
-            //    .AllowAnyOrigin() // allow any origin
-            //    .AllowAnyMethod()
-            //    .AllowAnyHeader());
-            app.UseRouting();
             app.UseCors("MyPolicy");
+            //app.UseSignalR(routes =>
+            //{
+            //    routes.MapHub<General>("/hubs/general");
+            //});
+            app.UseHttpsRedirection();
+           
+            app.UseRouting();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
