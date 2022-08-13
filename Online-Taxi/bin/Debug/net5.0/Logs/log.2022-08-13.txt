@@ -1,0 +1,6 @@
+2022-08-13 20:52:18.7698    9  INFO wallet.lib.logger.LoggerManager localhost:5001/TripList/negotiate  (:
+2022-08-13 20:52:18.8383    9  INFO wallet.lib.logger.LoggerManager localhost:5001/TripList/negotiate  (:
+2022-08-13 20:52:18.8710    9  WARN wallet.lib.logger.LoggerManager localhost:5001/TripList/negotiate  (:
+2022-08-13 20:52:18.8710    9  WARN wallet.lib.logger.LoggerManager localhost:5001/TripList/negotiate  (:
+2022-08-13 20:52:18.9531    9  INFO wallet.lib.logger.LoggerManager localhost:5001/TripList  (:
+2022-08-13 20:52:18.9542    9  INFO wallet.lib.logger.LoggerManager localhost:5001/TripList  (:

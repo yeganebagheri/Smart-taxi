@@ -143,3 +143,8 @@ C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\Online-Taxi.ge
 C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\ref\Online-Taxi.dll
 C:\Users\maryam\Documents\UniProject\Online-Taxi\bin\Debug\net5.0\Microsoft.AspNet.SignalR.SystemWeb.dll
 C:\Users\maryam\Documents\UniProject\Online-Taxi\bin\Debug\net5.0\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\maryam\Documents\UniProject\Online-Taxi\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\maryam\Documents\UniProject\Online-Taxi\bin\Debug\net5.0\NLog.dll
+C:\Users\maryam\Documents\UniProject\Online-Taxi\bin\Debug\net5.0\NLog.Slack.dll
+C:\Users\maryam\Documents\UniProject\Online-Taxi\bin\Debug\net5.0\NLog.Targets.Seq.dll
+C:\Users\maryam\Documents\UniProject\Online-Taxi\bin\Debug\net5.0\wallet.lib.logger.dll
