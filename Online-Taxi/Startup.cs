@@ -29,8 +29,7 @@ using _3_Infrastructure.Repositories.Driver.Driver_req;
 using _3_Infrastructure.Repositories.Pre_Trip;
 using static _3_Infrastructure.Repositories.Pre_Trip.IPreTripRepository;
 using Application.Hubs;
-using Api.Middlewares;
-using wallet.lib.logger;
+//using Api.Middlewares;
 
 namespace Online_Taxi
 {
@@ -53,12 +52,10 @@ namespace Online_Taxi
             //           .AllowAnyHeader();
 
             //}));
-
             services.AddSignalR(options =>
             {
                 options.EnableDetailedErrors = true;
             });
-
 
             services.AddCors(options => options.AddPolicy("MyPolicy",
             builder =>
@@ -88,7 +85,6 @@ namespace Online_Taxi
             services.AddScoped(typeof(IDriverRepository), typeof(DriverRepository)); 
             services.AddScoped(typeof(ISubPreTripRepository), typeof(SubPreTripRepository)); 
             services.AddScoped(typeof(IPreTripRepository), typeof(PreTripRepository));
-            services.AddScoped(typeof(ILoggerManager), typeof(LoggerManager));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddHttpContextAccessor();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
@@ -110,15 +106,14 @@ namespace Online_Taxi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Online_Taxi v1"));
             }
             app.UseCors("MyPolicy");
-            app.UseMiddleware<LoggerMiddleware>();
             //app.UseSignalR(routes =>
             //{
             //    routes.MapHub<General>("/hubs/general");
             //});
             app.UseHttpsRedirection();
-           
+            //app.UseMiddleware<LoggerMiddleware>();
             app.UseRouting();
-            app.UseMiddleware<LoggerMiddleware>();
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

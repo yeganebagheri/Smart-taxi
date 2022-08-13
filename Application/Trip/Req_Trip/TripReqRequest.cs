@@ -14,7 +14,7 @@ namespace Application.Trip.Req_Trip
     {
         public LocationModel sourceAndDest { get; set; }
 
-        public int firstPrice { get; set; }
+        //public int firstPrice { get; set; }
 
         public int passesNum { get; set; }
 
@@ -70,7 +70,8 @@ namespace Application.Trip.Req_Trip
                     LocationId = locationModel.Id,
                     passengerId = request.passengerId,
                     firstPrice = firstPrice,
-                    passesNum = request.passesNum
+                    passesNum = request.passesNum,
+                    Id = Guid.NewGuid()
                 };
 
                 await _unitOfWork.TripReq.InsertTripReq(trip_req);
@@ -79,7 +80,7 @@ namespace Application.Trip.Req_Trip
                 var nearestOrigin = await _unitOfWork.TripReq.GetNearestOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
                 var nearestSourseReq = nearestOrigin.AsList();
 
-                //get nearest trip request with destination
+                //get nearest trip request with destination from which are nearest origins
                 var nearestdest = await _unitOfWork.TripReq.GetNearestDest(request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude);
                 var nearestDestReq = nearestdest.AsList();
 

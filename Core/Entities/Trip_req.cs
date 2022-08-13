@@ -14,7 +14,7 @@ namespace Core.Entities
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public Guid LocationId { get; set; }
         public Guid passengerId { get; set; }
         public string firstPrice { get; set; }
