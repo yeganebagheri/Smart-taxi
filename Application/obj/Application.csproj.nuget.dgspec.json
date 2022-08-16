@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maryam\\Documents\\UniProject\\Application\\Application.csproj": {}
+    "C:\\Uni\\Uni Projects\\Online-Taxi\\Application\\Application.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maryam\\Documents\\UniProject\\3-Infrastructure\\Infrastructure.csproj": {
+    "C:\\Uni\\Uni Projects\\Online-Taxi\\3-Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maryam\\Documents\\UniProject\\3-Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Uni\\Uni Projects\\Online-Taxi\\3-Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\3-Infrastructure\\Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\maryam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maryam\\Documents\\UniProject\\3-Infrastructure\\obj\\",
+        "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\3-Infrastructure\\Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\98939\\.nuget\\packages\\",
+        "outputPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\3-Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\maryam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\98939\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -28,8 +28,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj"
+              "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj": {
+                "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj"
               }
             }
           }
@@ -96,21 +96,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\maryam\\Documents\\UniProject\\Application\\Application.csproj": {
+    "C:\\Uni\\Uni Projects\\Online-Taxi\\Application\\Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maryam\\Documents\\UniProject\\Application\\Application.csproj",
+        "projectUniqueName": "C:\\Uni\\Uni Projects\\Online-Taxi\\Application\\Application.csproj",
         "projectName": "Application",
-        "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\Application\\Application.csproj",
-        "packagesPath": "C:\\Users\\maryam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maryam\\Documents\\UniProject\\Application\\obj\\",
+        "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\98939\\.nuget\\packages\\",
+        "outputPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\maryam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\98939\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -124,11 +124,11 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\maryam\\Documents\\UniProject\\3-Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\3-Infrastructure\\Infrastructure.csproj"
+              "C:\\Uni\\Uni Projects\\Online-Taxi\\3-Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\3-Infrastructure\\Infrastructure.csproj"
               },
-              "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj": {
-                "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj"
+              "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj": {
+                "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj"
               }
             }
           }
@@ -199,21 +199,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj": {
+    "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj",
+        "projectUniqueName": "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj",
         "projectName": "Core",
-        "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj",
-        "packagesPath": "C:\\Users\\maryam\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maryam\\Documents\\UniProject\\Core\\obj\\",
+        "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\98939\\.nuget\\packages\\",
+        "outputPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\maryam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\98939\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -287,7 +287,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

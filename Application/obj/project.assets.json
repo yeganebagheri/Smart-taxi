@@ -36,9 +36,6 @@
           "lib/netstandard2.1/FluentResults.dll": {}
         }
       },
-      "jQuery/1.6.4": {
-        "type": "package"
-      },
       "MediatR/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -74,42 +71,15 @@
         }
       },
       "Microsoft.AspNet.SignalR/2.4.3": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.SignalR.JS": "2.4.3",
-          "Microsoft.AspNet.SignalR.SystemWeb": "2.4.3"
-        }
+        "type": "package"
       },
       "Microsoft.AspNet.SignalR.Core/2.4.3": {
         "type": "package",
-        "dependencies": {
-          "Microsoft.Owin.Security": "2.1.0",
-          "Newtonsoft.Json": "6.0.4"
-        },
         "compile": {
           "lib/net45/Microsoft.AspNet.SignalR.Core.dll": {}
         },
         "runtime": {
           "lib/net45/Microsoft.AspNet.SignalR.Core.dll": {}
-        }
-      },
-      "Microsoft.AspNet.SignalR.JS/2.4.3": {
-        "type": "package",
-        "dependencies": {
-          "jQuery": "1.6.4"
-        }
-      },
-      "Microsoft.AspNet.SignalR.SystemWeb/2.4.3": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.AspNet.SignalR.Core": "2.4.3",
-          "Microsoft.Owin.Host.SystemWeb": "2.1.0"
-        },
-        "compile": {
-          "lib/net45/Microsoft.AspNet.SignalR.SystemWeb.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Microsoft.AspNet.SignalR.SystemWeb.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/2.2.0": {
@@ -1129,44 +1099,6 @@
           "lib/netstandard2.0/Microsoft.OpenApi.dll": {}
         }
       },
-      "Microsoft.Owin/2.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Owin": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/Microsoft.Owin.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Microsoft.Owin.dll": {}
-        }
-      },
-      "Microsoft.Owin.Host.SystemWeb/2.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Owin": "2.1.0",
-          "Owin": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/Microsoft.Owin.Host.SystemWeb.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Microsoft.Owin.Host.SystemWeb.dll": {}
-        }
-      },
-      "Microsoft.Owin.Security/2.1.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Owin": "2.1.0",
-          "Owin": "1.0.0"
-        },
-        "compile": {
-          "lib/net45/Microsoft.Owin.Security.dll": {}
-        },
-        "runtime": {
-          "lib/net45/Microsoft.Owin.Security.dll": {}
-        }
-      },
       "Microsoft.Win32.Primitives/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -1270,15 +1202,6 @@
         },
         "runtime": {
           "lib/netstandard1.3/Newtonsoft.Json.Bson.dll": {}
-        }
-      },
-      "Owin/1.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net40/Owin.dll": {}
-        },
-        "runtime": {
-          "lib/net40/Owin.dll": {}
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -2989,24 +2912,6 @@
         "lib/netstandard2.1/FluentResults.xml"
       ]
     },
-    "jQuery/1.6.4": {
-      "sha512": "8RzoZQFeFYL/cINRXksLWyl8D5TKctZ/2G8hrlOLLM5OgFNI9h3t3l5tB+BBbsBUxaPUageVe0p9ruU5jrFeow==",
-      "type": "package",
-      "path": "jquery/1.6.4",
-      "hasTools": true,
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Content/Scripts/jquery-1.6.4-vsdoc.js",
-        "Content/Scripts/jquery-1.6.4.js",
-        "Content/Scripts/jquery-1.6.4.min.js",
-        "Tools/install.ps1",
-        "Tools/jquery-1.6.4-vsdoc-para.js",
-        "Tools/uninstall.ps1",
-        "jquery.1.6.4.nupkg.sha512",
-        "jquery.nuspec"
-      ]
-    },
     "MediatR/10.0.1": {
       "sha512": "vnjbk4giDJzJelh34Ygt0eorApCKrRFB7j0pauFPY1oxfO3cEZ7FugBrIOjCM76SDGTOmPFfbfmVnz1t3iFrGA==",
       "type": "package",
@@ -3074,36 +2979,6 @@
         "lib/net45/Microsoft.AspNet.SignalR.Core.xml",
         "microsoft.aspnet.signalr.core.2.4.3.nupkg.sha512",
         "microsoft.aspnet.signalr.core.nuspec",
-        "packageIcon.png"
-      ]
-    },
-    "Microsoft.AspNet.SignalR.JS/2.4.3": {
-      "sha512": "jaFU1OPcTX7h2Xu7nmW6DM5qoWYZWIaDdD6olWC+ybRzSGJBzJQTKrTpSiC2aRoqjn0d+qwBzrTjKXNBYwlnSQ==",
-      "type": "package",
-      "path": "microsoft.aspnet.signalr.js/2.4.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "LICENSE.txt",
-        "content/Scripts/jquery.signalR-2.4.3.js",
-        "content/Scripts/jquery.signalR-2.4.3.min.js",
-        "microsoft.aspnet.signalr.js.2.4.3.nupkg.sha512",
-        "microsoft.aspnet.signalr.js.nuspec",
-        "packageIcon.png"
-      ]
-    },
-    "Microsoft.AspNet.SignalR.SystemWeb/2.4.3": {
-      "sha512": "N4xjSEDTfZ3TRm0xAZIiRIYSGJjMED1ukZKTmpP9MLZ0B6Wu/xrReT1hSpTPf0O8ZR+1pFfmjdDTtAA+OpTmcA==",
-      "type": "package",
-      "path": "microsoft.aspnet.signalr.systemweb/2.4.3",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/Microsoft.AspNet.SignalR.SystemWeb.dll",
-        "lib/net45/Microsoft.AspNet.SignalR.SystemWeb.pdb",
-        "lib/net45/Microsoft.AspNet.SignalR.SystemWeb.xml",
-        "microsoft.aspnet.signalr.systemweb.2.4.3.nupkg.sha512",
-        "microsoft.aspnet.signalr.systemweb.nuspec",
         "packageIcon.png"
       ]
     },
@@ -4476,49 +4351,6 @@
         "microsoft.openapi.nuspec"
       ]
     },
-    "Microsoft.Owin/2.1.0": {
-      "sha512": "lk0kK64mlmcmtWX8YOYkZsnZKDoGEzMZhe8e1bcP+FFcgD4f2QfKwvu5Z8Bh8WS0VO7Rgk+DJ0hwW0k+S/UGMg==",
-      "type": "package",
-      "path": "microsoft.owin/2.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Microsoft.Owin.XML",
-        "lib/net40/Microsoft.Owin.dll",
-        "lib/net45/Microsoft.Owin.XML",
-        "lib/net45/Microsoft.Owin.dll",
-        "microsoft.owin.2.1.0.nupkg.sha512",
-        "microsoft.owin.nuspec"
-      ]
-    },
-    "Microsoft.Owin.Host.SystemWeb/2.1.0": {
-      "sha512": "S+YOPgtQuXlKGh1OZCVzvmz++2ibNeACzDlMpeXFN1QBUf9l+gstfV0f5hTbhmkDBE8LrSCBWu+9Rrte+ivNhg==",
-      "type": "package",
-      "path": "microsoft.owin.host.systemweb/2.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Microsoft.Owin.Host.SystemWeb.dll",
-        "lib/net40/Microsoft.Owin.Host.SystemWeb.xml",
-        "lib/net45/Microsoft.Owin.Host.SystemWeb.dll",
-        "lib/net45/Microsoft.Owin.Host.SystemWeb.xml",
-        "microsoft.owin.host.systemweb.2.1.0.nupkg.sha512",
-        "microsoft.owin.host.systemweb.nuspec"
-      ]
-    },
-    "Microsoft.Owin.Security/2.1.0": {
-      "sha512": "4n1V0p+O6W1L0xHUM8Cjp2Y+MmmUkiCZv6PvRNIDCJD9zlerBJa2HECo9lUiWC+KuasQJ3QxB1FmipNBxdXXIQ==",
-      "type": "package",
-      "path": "microsoft.owin.security/2.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net45/Microsoft.Owin.Security.XML",
-        "lib/net45/Microsoft.Owin.Security.dll",
-        "microsoft.owin.security.2.1.0.nupkg.sha512",
-        "microsoft.owin.security.nuspec"
-      ]
-    },
     "Microsoft.Win32.Primitives/4.3.0": {
       "sha512": "9ZQKCWxH7Ijp9BfahvL2Zyf1cJIk8XYLF6Yjzr2yi0b2cOut/HQ31qf1ThHAgCc3WiZMdnWcfJCgN82/0UunxA==",
       "type": "package",
@@ -4660,18 +4492,6 @@
         "lib/netstandard1.3/Newtonsoft.Json.Bson.xml",
         "newtonsoft.json.bson.1.0.1.nupkg.sha512",
         "newtonsoft.json.bson.nuspec"
-      ]
-    },
-    "Owin/1.0.0": {
-      "sha512": "OseTFniKmyp76mEzOBwIKGBRS5eMoYNkMKaMXOpxx9jv88+b6mh1rSaw43vjBOItNhaLFG3d0a20PfHyibH5sw==",
-      "type": "package",
-      "path": "owin/1.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/net40/Owin.dll",
-        "owin.1.0.0.nupkg.sha512",
-        "owin.nuspec"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -9039,19 +8859,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\maryam\\.nuget\\packages\\": {}
+    "C:\\Users\\98939\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\maryam\\Documents\\UniProject\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\Uni\\Uni Projects\\Online-Taxi\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\maryam\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\maryam\\Documents\\UniProject\\Application\\obj\\",
+      "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\98939\\.nuget\\packages\\",
+      "outputPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\maryam\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\98939\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9065,11 +8885,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\maryam\\Documents\\UniProject\\3-Infrastructure\\Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\3-Infrastructure\\Infrastructure.csproj"
+            "C:\\Uni\\Uni Projects\\Online-Taxi\\3-Infrastructure\\Infrastructure.csproj": {
+              "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\3-Infrastructure\\Infrastructure.csproj"
             },
-            "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj": {
-              "projectPath": "C:\\Users\\maryam\\Documents\\UniProject\\Core\\Core.csproj"
+            "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj": {
+              "projectPath": "C:\\Uni\\Uni Projects\\Online-Taxi\\Core\\Core.csproj"
             }
           }
         }
@@ -9140,7 +8960,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   },
@@ -9151,56 +8971,6 @@
       "warningLevel": 1,
       "message": "Package 'Microsoft.AspNet.SignalR.Core 2.4.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
       "libraryId": "Microsoft.AspNet.SignalR.Core",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.AspNet.SignalR.SystemWeb 2.4.3' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.AspNet.SignalR.SystemWeb",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin 2.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Owin",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin.Host.SystemWeb 2.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Owin.Host.SystemWeb",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Microsoft.Owin.Security 2.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Microsoft.Owin.Security",
-      "targetGraphs": [
-        "net5.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Owin 1.0.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net5.0'. This package may not be fully compatible with your project.",
-      "libraryId": "Owin",
       "targetGraphs": [
         "net5.0"
       ]
