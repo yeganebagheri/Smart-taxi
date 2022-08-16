@@ -80,6 +80,10 @@ namespace Application.Trip.Req_Trip
                 var nearestOrigin = await _unitOfWork.TripReq.GetNearestOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
                 var nearestSourseReq = nearestOrigin.AsList();
 
+                ////get nearest Driver request with source
+                //var nearestDriverOrigin = await _unitOfWork.TripReq.GetNearestDriverOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
+                //var nearestDriverSourseReq = nearestOrigin.AsList();
+
                 //get nearest trip request with destination from which are nearest origins
                 var nearestdest = await _unitOfWork.TripReq.GetNearestDest(request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude);
                 var nearestDestReq = nearestdest.AsList();
@@ -133,7 +137,7 @@ namespace Application.Trip.Req_Trip
                     //get user model from passengerId 2
                     var DParameter1 = new DynamicParameters();
                     DParameter1.Add("@Id", nearestDestReq[0].passengerId);
-                    var UserId1 = _dbConnection.QueryFirst<string>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
+                    var UserId1 = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
 
                     var DParameter4 = new DynamicParameters();
                     DParameter4.Add("@Id", UserId1);
@@ -201,7 +205,7 @@ namespace Application.Trip.Req_Trip
                     //get user model from passengerId 2
                     var DParameter1 = new DynamicParameters();
                     DParameter1.Add("@Id", nearestDestReq[0].passengerId);
-                    var UserId1 = _dbConnection.QueryFirst<string>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
+                    var UserId1 = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
 
                     var DParameter4 = new DynamicParameters();
                     DParameter4.Add("@Id", UserId1);
@@ -210,7 +214,7 @@ namespace Application.Trip.Req_Trip
                     //get user model from passengerId 3
                     var DParameter6 = new DynamicParameters();
                     DParameter6.Add("@Id", nearestDestReq[1].passengerId);
-                    var UserId2 = _dbConnection.QueryFirst<string>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter6);
+                    var UserId2 = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter6);
 
                     var DParameter7 = new DynamicParameters();
                     DParameter7.Add("@Id", UserId2);
