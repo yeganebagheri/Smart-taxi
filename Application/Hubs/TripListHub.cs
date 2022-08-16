@@ -10,9 +10,7 @@ namespace Application.Hubs
 {
     public class TripListHub :  Hub
     {
-        //private readonly IHubContext context = GlobalHost.ConnectionManager.GetHubContext<TripListHub>();
-
-        //private readonly IDictionary<string, UserConnection> _connections;
+      
         private readonly IMediator _mediator;
 
         public TripListHub(IMediator mediator)
@@ -30,12 +28,39 @@ namespace Application.Hubs
 
         }
 
-       
-        //public Task SendUsersConnected(Core.Entities.Trip trips)
-        //{
-        //    return context.Clients.Client(Context.ConnectionId).SendAsync("broadcastTripList", trips);
-        //}
-
-
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//private readonly IHubContext context = GlobalHost.ConnectionManager.GetHubContext<TripListHub>();
+
+//private readonly IDictionary<string, UserConnection> _connections;
+
+
+
+
+
+
+
+
+
+
+
+//public Task SendUsersConnected(Core.Entities.Trip trips)
+//{
+//    return context.Clients.Client(Context.ConnectionId).SendAsync("broadcastTripList", trips);
+//}
