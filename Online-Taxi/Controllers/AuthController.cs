@@ -6,6 +6,8 @@ using wallet.lib.BaseApi.ControllerConfig;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
+using Core.Entities.DataModels;
+using FluentResults;
 
 namespace Api.Controllers
 {
@@ -52,21 +54,21 @@ namespace Api.Controllers
         }
 
 
-        //[HttpGet("Profile")]
-        //public async Task<ActionResult<FluentResults.Result<Guid>>> GetProfile(GetProfileRequest request)
-        //{
+        [HttpPost("Profile")]
+        public async Task<ActionResult<ProfileDto>> GetProfile(GetProfileRequest request)
+        {
 
-        //    FluentResults.Result<Guid> result = await Mediator.Send(request);
+            FluentResults.Result<ProfileDto> result = await Mediator.Send(request);
 
-        //    if (result.IsSuccess)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    else
-        //    {
-        //        return BadRequest(result);
-        //    }
-        //}
+            if (result.IsSuccess)
+            {
+                return Ok(value: result);
+            }
+            else
+            {
+                return BadRequest(result);
+            }
+        }
 
 
 
