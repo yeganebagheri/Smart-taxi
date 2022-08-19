@@ -1,8 +1,10 @@
-﻿
+﻿using Application.Hubs;
+using Application.Services;
 using Core.Entities;
 using Dapper;
 using FluentResults;
 using MediatR;
+using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Data;
 using System.Threading;
@@ -25,14 +27,19 @@ namespace Application.Trip.Req_Trip
             private readonly Infrastructure.IUnitOfWork _unitOfWork;
             private readonly IMediator _mediator;
             private readonly IDbConnection _dbConnection;
+            private readonly IRedisServices _redisServices;
+            private readonly IHubContext<TripListHub , IHubService> _hub;
 
-            public TripReqRequestHandler(IDbConnection dbConnection, IMediator mediator, Infrastructure.IUnitOfWork unitOfWork)
+            public TripReqRequestHandler(IHubContext<TripListHub,IHubService> hub ,
+                IRedisServices redisServices, IDbConnection dbConnection, IMediator mediator, Infrastructure.IUnitOfWork unitOfWork)
             {
                 _unitOfWork = unitOfWork;
                 _mediator = mediator;
                 _dbConnection = dbConnection;
+                _redisServices = redisServices;
+                _hub = hub;
             }
-
+             
             public async Task<Result> Handle(TripReqRequest request, CancellationToken cancellationToken)
             {
                 var result = new Result();
@@ -80,15 +87,15 @@ namespace Application.Trip.Req_Trip
                 var nearestOrigin = await _unitOfWork.TripReq.GetNearestOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
                 var nearestSourseReq = nearestOrigin.AsList();
 
-                ////get nearest Driver request with source
-                //var nearestDriverOrigin = await _unitOfWork.TripReq.GetNearestDriverOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
-                //var nearestDriverSourseReq = nearestOrigin.AsList();
 
                 //get nearest trip request with destination from which are nearest origins
                 var nearestdest = await _unitOfWork.TripReq.GetNearestDest(request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude);
                 var nearestDestReq = nearestdest.AsList();
 
-
+                //get nearest Driver request with source
+                var nearestDriverOrigin = await _unitOfWork.TripReq.GetNearestDriverOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
+                var nearestDriverSourseReq = nearestDriverOrigin.AsList();
+               
                 //create trip with nearest triprequest
                 if (trip_req.passesNum == 0)
                 {
@@ -116,12 +123,22 @@ namespace Application.Trip.Req_Trip
                     Core.Entities.DataModels.PreTrip pretrip = new()
                     {
                         SubPreTrip1Id = subPreTrip.Id,
-                        IsProcessed = false
+                        IsProcessed = false,
+                        Id = Guid.NewGuid()
 
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip);
 
                     //send to hub
+                    foreach (var driver in nearestDriverSourseReq)
+                    {
+                        var connectionId = await _redisServices.GetFromRedis(driver.DriverId);
+                        //await _hub.Clients.Client(connectionId).BroadcastTripToDriver("broadcastTripList", preTrips);
+                        await _hub.Clients.Client(connectionId).BroadcastTripToDriverNot("broadcastTripList", pretrip);
+                        //await _hub.invoke(SendToList);
+
+                    };
+
                 }
                 else if (trip_req.passesNum == 1)
                 {
@@ -188,6 +205,15 @@ namespace Application.Trip.Req_Trip
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip2);
 
+                    //send to hub
+                    foreach (var driver in nearestDriverSourseReq)
+                    {
+                        var connectionId = await _redisServices.GetFromRedis(driver.DriverId);
+                        //await _hub.Clients.Client(connectionId).BroadcastTripToDriver("broadcastTripList", preTrips);
+                        await _hub.Clients.Client(connectionId).BroadcastTripToDriverNot("broadcastTripList", pretrip2);
+                        //await _hub.invoke(SendToList);
+
+                    };
 
 
                 }
@@ -279,6 +305,15 @@ namespace Application.Trip.Req_Trip
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip1);
 
+                    //send to hub
+                    foreach (var driver in nearestDriverSourseReq)
+                    {
+                        var connectionId = await _redisServices.GetFromRedis(driver.DriverId);
+                        //await _hub.Clients.Client(connectionId).BroadcastTripToDriver("broadcastTripList", preTrips);
+                        await _hub.Clients.Client(connectionId).BroadcastTripToDriverNot("broadcastTripList", pretrip1);
+                        //await _hub.invoke(SendToList);
+
+                    };
 
                 };
 

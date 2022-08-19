@@ -17,6 +17,7 @@ namespace Infrastructure
         public ILocationRepository LocRep { get; }
         public IPassengerRepository passengerRep { get; }
         public IDriverRepository DriverRep { get; }
+        public IDriverReqRepository DriverReqRep { get; }
         public IDbConnection DbConnection { get; }
         public ISubPreTripRepository SubPreTripRepository { get; }
         public IPreTripRepository PreTripRepository { get; }

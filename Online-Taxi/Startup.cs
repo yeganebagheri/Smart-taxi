@@ -29,6 +29,10 @@ using _3_Infrastructure.Repositories.Driver.Driver_req;
 using _3_Infrastructure.Repositories.Pre_Trip;
 using static _3_Infrastructure.Repositories.Pre_Trip.IPreTripRepository;
 using Application.Hubs;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.SignalR;
+using Application.Services;
+using Newtonsoft.Json.Converters;
 //using Api.Middlewares;
 
 namespace Online_Taxi
@@ -72,23 +76,40 @@ namespace Online_Taxi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Online_Taxi", Version = "v1" });
             });
 
+
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = "localhost:6000";
+            });
+
             //var assembly = Assembly.GetExecutingAssembly();
             //services.AddMediatR(assembly);
             //services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddSignalR();
+            //services.AddSignalR();
+            //services.AddSignalR()
+            //.AddJsonProtocol(options =>
+            //{
+            //    options.PayloadSerializerSettings.Converters.Add(new StringEnumConverter(true));
+            //});
             services.AddApplication();
             services.AddMediatR(typeof(RegisterRequestHandler).GetTypeInfo().Assembly);
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
             services.AddScoped(typeof(ILocationRepository), typeof(LocationRepository));
             services.AddScoped(typeof(ITripReqRepository), typeof(TripReqRepository));
             services.AddScoped(typeof(IPassengerRepository), typeof(PassengerRepository));
-            services.AddScoped(typeof(IDriverRepository), typeof(DriverRepository)); 
+            services.AddScoped(typeof(IDriverRepository), typeof(DriverRepository));
+            services.AddScoped(typeof(IDriverReqRepository), typeof(DriverReqRepository));
             services.AddScoped(typeof(ISubPreTripRepository), typeof(SubPreTripRepository)); 
             services.AddScoped(typeof(IPreTripRepository), typeof(PreTripRepository));
+            services.AddScoped(typeof(IRedisServices), typeof(RedisServices));
+            //services.AddScoped(typeof(IHubService), typeof(TripListHub));
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddHttpContextAccessor();
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
-
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = "localhost";
+            });
 
             services.AddScoped<IDbConnection>((sp) => new SqlConnection(Configuration["ConnectionStrings:DefaultConnection"]));
 

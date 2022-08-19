@@ -13,18 +13,18 @@ using System.Threading.Tasks;
 
 namespace Application.Driver
 {
-    public class DriverReqRequest : IRequest<Result<List<PreTrip>>>
+    public class DriverReqRequest : IRequest<List<PreTrip>>
     {
 
         public double SLongitude { get; set; }
         public double SLatitude { get; set; }
 
-        public string ConnectionId { get; set; }
+        //public string ConnectionId { get; set; }
 
-        public Guid DriverId { get; set; }
+        public string DriverId { get; set; }
 
 
-        public class DriverReqRequestHandler : IRequestHandler<DriverReqRequest, Result<List<PreTrip>>>
+        public class DriverReqRequestHandler : IRequestHandler<DriverReqRequest, List<PreTrip>>
         {
             private readonly Infrastructure.IUnitOfWork _unitOfWork;
             private readonly IMediator _mediator;
@@ -37,12 +37,12 @@ namespace Application.Driver
                 _dbConnection = dbConnection;
             }
 
-            public async Task<Result<List<PreTrip>>> Handle(DriverReqRequest request, CancellationToken cancellationToken)
+            public async Task<List<PreTrip>> Handle(DriverReqRequest request, CancellationToken cancellationToken)
             {
                 var result = new Result<List<PreTrip>>();
 
 
-                ////insert in LocationModel
+                //insert in LocationModel
                 //Core.Entities.LocationModel locationModel = new()
                 //{
                 //    SLatitude = request.sourceAndDest.SLatitude,
@@ -54,19 +54,27 @@ namespace Application.Driver
 
                 //await _unitOfWork.LocRep.InsertLoc(locationModel);
 
+                
+            //insert in Driver_req
+            Core.Entities.DriverReq driver_req = new()
+                {
+                    SLongitude = request.SLongitude,
+                    SLatitude = request.SLatitude,
+                    DriverId = new Guid(request.DriverId),
+                    IsReady = true,
+                    Id = Guid.NewGuid()
+                };
 
+                try
+                {
+                    await _unitOfWork.DriverReqRep.InsertDriverReq(driver_req);
+                }
+                catch(Exception ex)
+                {
+                    result = new Result<List<PreTrip>>();
 
-                ////insert in Driver_req
-                //Core.Entities.Driver_req driver_req = new()
-                //{
-                //    LocationId = locationModel.Id,
-                //    DriverId = request.DriverId,
-                //    ConectionId = request.ConnectionId,
-                //    IsReady = true,
-                //    Id = Guid.NewGuid()
-                //};
-
-                //await _unitOfWork.DriverReqRepository.InsertDriverReq(driver_req);
+                }
+                
 
                 //get PreTrips which have IsProcessed = false
                 var preTrips = _dbConnection.Query<PreTrip>("SELECT *  FROM [dbo].[PreTrip] pt where pt.IsProcessed=0 ");

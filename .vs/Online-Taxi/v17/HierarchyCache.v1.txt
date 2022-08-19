@@ -1,0 +1,290 @@
+﻿++Solution 'Online-Taxi' ‎(4 of 4 projects)
+i:{00000000-0000-0000-0000-000000000000}:Online-Taxi.sln
+++Api
+i:{00000000-0000-0000-0000-000000000000}:Api
+++Online-Taxi
+i:{c7439169-6ac6-42c3-85ff-c9453abf57ac}:Online-Taxi
+++Connected Services 
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3213
+++Dependencies
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3212
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>2613
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>2627
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3399
+++Properties
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\properties\
+++PublishProfiles
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\properties\publishprofiles\
+++launchSettings.json
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\properties\launchsettings.json
+++Controllers
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\controllers\
+++AuthController.cs
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\controllers\authcontroller.cs
+++TripController.cs
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\controllers\tripcontroller.cs
+++appsettings.json
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\appsettings.json
+++LoggerMiddleware.cs
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\loggermiddleware.cs
+++Program.cs
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\program.cs
+++Startup.cs
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\startup.cs
+++No service dependencies discovered
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3214
+++Analyzers
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:analyzers
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:analyzers
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:analyzers
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:analyzers
+++Frameworks
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:frameworks
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:frameworks
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:frameworks
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:frameworks
+++Packages
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:packages
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:packages
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:packages
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:packages
+++Projects
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:projects
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:projects
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:projects
+++FolderProfile.pubxml
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\properties\publishprofiles\folderprofile.pubxml
+++appsettings.Development.json
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\appsettings.development.json
+++Microsoft.AspNetCore.Analyzers
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\users\98939\.nuget\packages\microsoft.aspnetcore.mvc.analyzers\2.2.0\analyzers\dotnet\cs\microsoft.aspnetcore.mvc.analyzers.dll
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\users\98939\.nuget\packages\microsoft.aspnetcore.mvc.analyzers\2.2.0\analyzers\dotnet\cs\microsoft.aspnetcore.mvc.analyzers.dll
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\users\98939\.nuget\packages\microsoft.aspnetcore.mvc.analyzers\2.2.0\analyzers\dotnet\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.CodeAnalysis.Analyzers
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\users\98939\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.analyzers.dll
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\users\98939\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.analyzers.dll
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\users\98939\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.analyzers.dll
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\users\98939\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.analyzers.dll
+++Microsoft.CodeAnalysis.CSharp.Analyzers
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\users\98939\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.csharp.analyzers.dll
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\users\98939\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.csharp.analyzers.dll
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\users\98939\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.csharp.analyzers.dll
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\users\98939\.nuget\packages\microsoft.codeanalysis.analyzers\1.1.0\analyzers\dotnet\cs\microsoft.codeanalysis.csharp.analyzers.dll
+++Microsoft.CodeAnalysis.CSharp.NetAnalyzers
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.csharp.netanalyzers.dll
+++Microsoft.CodeAnalysis.NetAnalyzers
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\program files\dotnet\sdk\6.0.202\sdks\microsoft.net.sdk\analyzers\microsoft.codeanalysis.netanalyzers.dll
+++Microsoft.Extensions.Logging.Generators
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\users\98939\.nuget\packages\microsoft.extensions.logging.abstractions\6.0.1\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\users\98939\.nuget\packages\microsoft.extensions.logging.abstractions\6.0.1\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\users\98939\.nuget\packages\microsoft.extensions.logging.abstractions\6.0.1\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\users\98939\.nuget\packages\microsoft.extensions.logging.abstractions\6.0.1\analyzers\dotnet\roslyn4.0\cs\microsoft.extensions.logging.generators.dll
+++Microsoft.AspNetCore.App
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\microsoft.aspnetcore.app
+++Microsoft.NETCore.App
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\online-taxi\microsoft.netcore.app
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\microsoft.netcore.app
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\microsoft.netcore.app
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\microsoft.netcore.app
+++Dapper.FastCrud (3.0.46)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3460
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>3437
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3415
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3414
+++FluentResults (3.8.0)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3467
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>3447
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3430
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3428
+++MediatR (10.0.1)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3465
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>3446
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3427
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3426
+++MediatR.Extensions.Microsoft.DependencyInjection (10.0.1)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3472
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>3449
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3435
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3434
+++Microsoft.AspNet.SignalR.Core (2.4.3)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3464
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3423
+++Microsoft.AspNetCore.Http (2.2.2)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3470
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>3448
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3433
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3431
+++Microsoft.AspNetCore.SignalR (1.1.0)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3473
+++Microsoft.Extensions.Caching.StackExchangeRedis (6.0.8)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3504
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>3500
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3502
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3501
+++Swashbuckle.AspNetCore (6.4.0)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3463
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>3445
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3420
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3421
+++System.Data.SqlClient (4.8.3)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3466
+++wallet.lib.BaseApi (8.1.0)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3461
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>3438
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3416
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3417
+++wallet.lib.dapper (6.3.0)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3462
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:>3441
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3418
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3419
+++wallet.lib.logger (1.0.0)
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:>3469
+++Application
+i:{9d02b712-b5d7-4cd4-8be9-890b5e900c14}:c:\uni\uni projects\online-taxi\application\bin\debug\net5.0\application.dll
+i:{00000000-0000-0000-0000-000000000000}:Application
+i:{b964a0e2-e997-4f9e-a97e-ab3a32099e79}:Application
+++Core
+i:{00000000-0000-0000-0000-000000000000}:Core
+i:{77276272-b819-4994-b1f3-4a948b078002}:Core
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\core\core.csproj
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\core\core.csproj
+++Entities
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\
+++DataModels
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\datamodels\
+++Driver.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\driver.cs
+++Driver_req.cs
+++LocationModel.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\locationmodel.cs
+++Passenger.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\passenger.cs
+++Trip.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\trip.cs
+++Trip_req.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\trip_req.cs
+++User.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\user.cs
+++Exceptions
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\exceptions\
+++PreTrip.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\datamodels\pretrip.cs
+++PreTripViewModel.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\datamodels\pretripviewmodel.cs
+++SubPreTrip.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\datamodels\subpretrip.cs
+++BadRequestException.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\exceptions\badrequestexception.cs
+++Auth
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\auth\
+++Driver
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\driver\
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\driver\
+++DriverReqRequest.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\driver\driverreqrequest.cs
+++Hubs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\hubs\
+++TripListHub.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\hubs\triplisthub.cs
+++UserConnection.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\hubs\userconnection.cs
+++Services
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\services\
+++IRedisServices.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\services\iredisservices.cs
+++Trip
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\trip\
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\trip\
+++MainTrip
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\trip\maintrip\
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\trip\maintrip\
+++Req_Trip
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\trip\req_trip\
+++models
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\trip\req_trip\models\
+++TripReqRequest.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\trip\req_trip\tripreqrequest.cs
+++SubPreTrip
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\trip\subpretrip\
+++DependencyInjection.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\dependencyinjection.cs
+++Models
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\auth\models\
+++LoginRequest.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\auth\loginrequest.cs
+++RegisterRequest.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\auth\registerrequest.cs
+++CreateTripRequest.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\trip\maintrip\createtriprequest.cs
+++SubPreTripRequest.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\trip\subpretrip\subpretriprequest.cs
+++Microsoft.AspNet.SignalR (2.4.3)
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:>3425
+++Infrastructure
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\3-infrastructure\infrastructure.csproj
+i:{8d2e4ba4-f3f5-44c4-860e-c9f365763eb2}:Infrastructure
+++LoginDto.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\auth\models\logindto.cs
+++3-Infrastructure
+i:{00000000-0000-0000-0000-000000000000}:3-Infrastructure
+++Repositories
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\
+++Driver_req
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\driver\driver_req\
+++IDriverReqRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\driver\driver_req\idriverreqrepository.cs
+++IDriverRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\driver\idriverrepository.cs
+++Location
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\location\
+++Passenger
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\passenger\
+++Pre_Trip
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\pre_trip\
+++User
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\user\
+++ISubPreTripRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\isubpretriprepository.cs
+++IUnitOfWork.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\iunitofwork.cs
+++UnitOfWork.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\unitofwork.cs
+++ILocationRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\location\ilocationrepository.cs
+++LocationRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\location\locationrepository.cs
+++IPassengerRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\passenger\ipassengerrepository.cs
+++IPreTripRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\pre_trip\ipretriprepository.cs
+++ITripReqRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\trip\itripreqrepository.cs
+++TripReqRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\trip\tripreqrepository.cs
+++Dtos
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\user\dtos\
+++IUserRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\user\iuserrepository.cs
+++UserRepository.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\user\userrepository.cs
+++Dapper (2.0.123)
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:>3424
+++UserProfileDto.cs
+i:{1f5c8058-2c12-443f-a0ba-899be435fdf4}:c:\uni\uni projects\online-taxi\3-infrastructure\repositories\user\dtos\userprofiledto.cs
+++DriverReq.cs
+i:{c9d7725a-b9aa-4d49-9fe4-d779f27c4647}:c:\uni\uni projects\online-taxi\core\entities\driverreq.cs
+++NewFolder
+++IHubService.cs
+i:{a06a8505-143a-46e6-b7b9-b9f1299d50b5}:c:\uni\uni projects\online-taxi\application\services\ihubservice.cs

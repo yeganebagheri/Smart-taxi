@@ -21,10 +21,11 @@ namespace Infrastructure
         public IPreTripRepository PreTripRepository { get; }
         public IDriverRepository DriverRep { get; }
         public IPassengerRepository passengerRep { get; }
-
+        public IDriverReqRepository DriverReqRep { get; }
 
         public UnitOfWork(
             ILocationRepository locRep,
+            IDriverReqRepository driverReqRep,
             IPreTripRepository preTripRepository,
             IDriverRepository driverRepository,
             IUserRepository usersRepository,
@@ -42,7 +43,7 @@ namespace Infrastructure
             passengerRep = PassengerRepository;
             SubPreTripRepository = subPreTripRepository;
             PreTripRepository = preTripRepository;
-
+            DriverReqRep = driverReqRep;
 
         }
 

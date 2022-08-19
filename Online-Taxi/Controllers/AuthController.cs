@@ -35,8 +35,7 @@ namespace Api.Controllers
 
 
        
-        [HttpPost("CreateAdmin")]
-        
+        [HttpPost("Register")]
         public async Task<ActionResult<FluentResults.Result<Guid>>> CreateAdmin(RegisterRequest request)
         {
 
@@ -51,6 +50,24 @@ namespace Api.Controllers
                 return BadRequest(result);
             }
         }
+
+
+        //[HttpGet("Profile")]
+        //public async Task<ActionResult<FluentResults.Result<Guid>>> GetProfile(GetProfileRequest request)
+        //{
+
+        //    FluentResults.Result<Guid> result = await Mediator.Send(request);
+
+        //    if (result.IsSuccess)
+        //    {
+        //        return Ok(result);
+        //    }
+        //    else
+        //    {
+        //        return BadRequest(result);
+        //    }
+        //}
+
 
 
     }

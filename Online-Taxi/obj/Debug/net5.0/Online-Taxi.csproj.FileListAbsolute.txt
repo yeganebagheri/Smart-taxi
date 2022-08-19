@@ -68,7 +68,6 @@ C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\obj\Debug\net5.0\ref\Online-Taxi.dll
 C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
 C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\Microsoft.AspNet.SignalR.Core.dll
-C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\NLog.config
 C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\NLog.dll
 C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\NLog.Slack.dll
@@ -154,3 +153,15 @@ C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\refint\Online-
 C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\Online-Taxi.pdb
 C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\Online-Taxi.genruntimeconfig.cache
 C:\Users\maryam\Documents\UniProject\Online-Taxi\obj\Debug\net5.0\ref\Online-Taxi.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\Microsoft.Extensions.Caching.Abstractions.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\Pipelines.Sockets.Unofficial.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\StackExchange.Redis.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\System.Diagnostics.PerformanceCounter.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.0\System.Diagnostics.PerformanceCounter.dll
+C:\Uni\Uni Projects\Online-Taxi\Online-Taxi\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll

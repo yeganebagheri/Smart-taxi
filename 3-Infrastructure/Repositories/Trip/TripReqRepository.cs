@@ -40,6 +40,26 @@ namespace _3_Infrastructure.Repositories.Trip
 
         }
 
+        public async Task<IEnumerable<DriverReq>> GetNearestDriverOrigins(double lat1, double long2)
+        {
+
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Lat1", lat1);
+            parameters.Add("@Long1", long2);
+
+            var NearestTripReqList = await _dbConnection.QueryAsync<DriverReq>(
+             sql: "[dbo].[get_nearest_DriverOrigins]",
+                param: parameters,
+                 commandType: CommandType.StoredProcedure);
+
+            return NearestTripReqList;
+
+
+
+        }
+
+
+
 
         public async Task<IEnumerable<Trip_req>> GetNearestDest(double lat1, double long2)
         {

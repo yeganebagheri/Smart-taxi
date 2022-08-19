@@ -8,13 +8,14 @@ using System.Threading.Tasks;
 
 namespace Core.Entities
 {
-    public class Driver_req
+    [Table("DriverReq")]
+    public class DriverReq
     {
-       
         public Guid Id { get; set; }
-        public Guid LocationId { get; set; }
         public Guid DriverId { get; set; }
-        public string ConectionId { get; set; }
+        public double SLongitude { get; set; }
+        public double SLatitude { get; set; }
+        //public string ConectionId { get; set; }
         public bool IsReady { get; set; }
     }
 }
