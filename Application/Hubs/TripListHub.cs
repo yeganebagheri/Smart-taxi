@@ -21,16 +21,16 @@ namespace Application.Hubs
         }
 
         // get location of driver
-        public async Task SendRequest(/*string ConnectionId, string DriverId, double SLatitude, double SLongitude */DriverReqRequest driverReq)
+        public async Task SendRequest(/*string DriverId, string SLatitude, string SLongitude ,*/DriverReqRequestModel model)
         {
             DriverReqRequest driverReq1 = new()
             {
-                SLongitude= driverReq.SLongitude,
-                SLatitude = driverReq.SLatitude,
-                DriverId= driverReq.DriverId
+                SLongitude = model.SLongitude,
+                SLatitude = model.SLatitude,
+                DriverId = model.DriverId
             };
-            var res =_mediator.Send(driverReq); 
-            await _redisServices.SetInRedis(new Guid(driverReq.DriverId), Context.ConnectionId);
+            var res = await _mediator.Send(driverReq1); 
+           // await _redisServices.SetInRedis(new Guid(driverReq1.DriverId), Context.ConnectionId);
             // return message;
             await Clients.Client(Context.ConnectionId).BroadcastTripToDriver("broadcastTripList", res);
 
@@ -49,7 +49,7 @@ namespace Application.Hubs
     }
 }
 
- 
+
 
 
 

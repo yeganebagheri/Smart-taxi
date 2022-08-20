@@ -53,10 +53,11 @@ namespace Application.Driver
                 //};
 
                 //await _unitOfWork.LocRep.InsertLoc(locationModel);
+                try
+                {
 
-                
-            //insert in Driver_req
-            Core.Entities.DriverReq driver_req = new()
+                    //insert in Driver_req
+                    Core.Entities.DriverReq driver_req = new()
                 {
                     SLongitude = request.SLongitude,
                     SLatitude = request.SLatitude,
@@ -65,8 +66,7 @@ namespace Application.Driver
                     Id = Guid.NewGuid()
                 };
 
-                try
-                {
+               
                     await _unitOfWork.DriverReqRep.InsertDriverReq(driver_req);
                 }
                 catch(Exception ex)

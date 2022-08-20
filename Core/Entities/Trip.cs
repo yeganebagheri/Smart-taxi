@@ -14,6 +14,7 @@ namespace Core.Entities
         [Key]
         public Guid Id { get; set; }
         public Guid DriverId { get; set; }
+        public Guid PassengerId { get; set; }
         public bool isCancled { get; set; }
         public string price { get; set; }
     }
