@@ -17,11 +17,6 @@ namespace Core.Entities.DataModels
         public int SLatitude { get; set; }
         public string DriverId { get; set; }
 
-        public DriverReqRequestModel(int sLongitude, int sLatitude, string driverId)
-        {
-            SLongitude = sLongitude;
-            SLongitude = sLatitude;
-            DriverId = driverId;
-        }
+       
     }
 }
