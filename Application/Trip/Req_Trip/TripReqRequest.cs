@@ -1,11 +1,13 @@
 ﻿using Application.Hubs;
 using Application.Services;
 using Core.Entities;
+using Core.Entities.DataModels;
 using Dapper;
 using FluentResults;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
@@ -128,13 +130,15 @@ namespace Application.Trip.Req_Trip
 
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip);
-
-                    //send to hub
+                    List<PreTrip> pretripList = new();
+                   //send to hub
                     foreach (var driver in nearestDriverSourseReq)
                     {
+
                         var connectionId = await _redisServices.GetFromRedis(driver.DriverId);
                         //await _hub.Clients.Client(connectionId).BroadcastTripToDriver("broadcastTripList", preTrips);
-                        await _hub.Clients.Client(connectionId).BroadcastTripToDriverNot("broadcastTripList", pretrip);
+                        pretripList.Add(pretrip);
+                        await _hub.Clients.Client(connectionId).BroadcastTripToDriver(pretripList);
                         //await _hub.invoke(SendToList);
 
                     };
@@ -205,12 +209,15 @@ namespace Application.Trip.Req_Trip
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip2);
 
+                  
+                    List<PreTrip> pretripList = new();
                     //send to hub
                     foreach (var driver in nearestDriverSourseReq)
                     {
                         var connectionId = await _redisServices.GetFromRedis(driver.DriverId);
                         //await _hub.Clients.Client(connectionId).BroadcastTripToDriver("broadcastTripList", preTrips);
-                        await _hub.Clients.Client(connectionId).BroadcastTripToDriverNot("broadcastTripList", pretrip2);
+                        pretripList.Add(pretrip2);
+                        await _hub.Clients.Client(connectionId).BroadcastTripToDriver(pretripList);
                         //await _hub.invoke(SendToList);
 
                     };
@@ -305,12 +312,14 @@ namespace Application.Trip.Req_Trip
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip1);
 
+                    List<PreTrip> pretripList = new();
                     //send to hub
                     foreach (var driver in nearestDriverSourseReq)
                     {
                         var connectionId = await _redisServices.GetFromRedis(driver.DriverId);
                         //await _hub.Clients.Client(connectionId).BroadcastTripToDriver("broadcastTripList", preTrips);
-                        await _hub.Clients.Client(connectionId).BroadcastTripToDriverNot("broadcastTripList", pretrip1);
+                        pretripList.Add(pretrip1);
+                        await _hub.Clients.Client(connectionId).BroadcastTripToDriver(pretripList);
                         //await _hub.invoke(SendToList);
 
                     };

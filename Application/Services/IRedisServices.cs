@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using Newtonsoft.Json;
-//using StackExchange.Redis;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +19,10 @@ namespace Application.Services
     {
         private readonly IDistributedCache _cache;
         //private readonly IConnectionMultiplexer _connectionMultiplexer;
-        public  RedisServices(IDistributedCache cache /*, IConnectionMultiplexer connectionMultiplexer*/)
+        public  RedisServices(IDistributedCache cache )//, IConnectionMultiplexer connectionMultiplexer)
         {
             _cache = cache;
-            //_connectionMultiplexer = connectionMultiplexer;
+           // _connectionMultiplexer = connectionMultiplexer;
 
         }
 
@@ -45,11 +45,11 @@ namespace Application.Services
             if (redisCustomerList != null)
             {
                 serializedCustomerList = Encoding.UTF8.GetString(redisCustomerList);
-                var weatherList = JsonConvert.DeserializeObject<List<string>>(serializedCustomerList);
+                //var weatherList = JsonConvert.DeserializeObject<List<string>>(serializedCustomerList);
             }
             else
             {
-               // var weatherList = _connectionMultiplexer.GetDatabase();
+                //var weatherList = _cache.GetDatabase();
                 var val = JsonConvert.SerializeObject(value);
                 var byteValue = Encoding.UTF8.GetBytes(val);
                 var options = new DistributedCacheEntryOptions().SetAbsoluteExpiration(DateTime.Now.AddMinutes(10)).SetSlidingExpiration(TimeSpan.FromMinutes(2));

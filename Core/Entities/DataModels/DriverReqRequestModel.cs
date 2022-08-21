@@ -13,8 +13,8 @@ namespace Core.Entities.DataModels
         {
         }
 
-        public int SLongitude { get; set; }
-        public int SLatitude { get; set; }
+        public string SLongitude { get; set; }
+        public string SLatitude { get; set; }
         public string DriverId { get; set; }
 
        

@@ -9,7 +9,7 @@ namespace Application.Services
 {
     public interface IHubService
     {
-        Task BroadcastTripToDriver(string name, List<PreTrip> preTrips);
-        Task BroadcastTripToDriverNot(string name, PreTrip preTrips);
+        Task BroadcastTripToDriver(List<PreTrip> preTrips);
+        Task ConnectionOn(string connectionID);
     }
 }

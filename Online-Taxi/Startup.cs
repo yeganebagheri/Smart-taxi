@@ -33,6 +33,7 @@ using Microsoft.AspNet.SignalR;
 using Microsoft.AspNetCore.SignalR;
 using Application.Services;
 using Newtonsoft.Json.Converters;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 //using Api.Middlewares;
 
 namespace Online_Taxi
@@ -56,6 +57,23 @@ namespace Online_Taxi
             //           .AllowAnyHeader();
 
             //}));
+
+            //services.AddAuthentication()
+            //    .AddJwtBearer(options =>
+            //    {
+            //        options.Events = new JwtBearerEvents
+            //        {
+            //            OnMessageReceived  = context =>
+            //            {
+            //                var accesstoken = context.Request.Query["access_token"];
+            //                if (string.IsNullOrEmpty(accesstoken) == false)
+            //                {
+            //                    context.Token = accesstoken;
+            //                }
+            //                return Task.CompletedTask;
+            //            }
+            //        };
+            //    });
             services.AddSignalR(options =>
             {
                 options.EnableDetailedErrors = true;
@@ -110,6 +128,11 @@ namespace Online_Taxi
             {
                 options.Configuration = "localhost";
             });
+
+            //services.AddSignalR().AddRedis(options =>
+            //{
+            //    options.Configuration.ClientName
+            //});
 
             services.AddScoped<IDbConnection>((sp) => new SqlConnection(Configuration["ConnectionStrings:DefaultConnection"]));
 
