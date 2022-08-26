@@ -17,7 +17,7 @@ namespace Application.Trip.MainTrip
 {
     public class CreateTripRequest : IRequest<Result>
     {
-        public Core.Entities.Driver driver { get; set; }
+        public Guid driverId { get; set; }
         public Guid PretripId { get; set; }
         //public static User pass3 { get; set; }
 
@@ -71,7 +71,7 @@ namespace Application.Trip.MainTrip
 
                 Core.Entities.Trip trip = new()
                 {
-                    DriverId = request.driver.Id,
+                    DriverId = request.driverId,
                     PreTripId = request.PretripId,
                     isCancled = false,
                     price = "2000",

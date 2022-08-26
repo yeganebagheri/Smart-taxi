@@ -1,4 +1,6 @@
 ﻿using Application.Trip;
+using Application.Trip.CancelTrip;
+using Application.Trip.MainTrip;
 //using Application.Trip.MainTrip;
 using Application.Trip.Req_Trip;
 using Microsoft.AspNetCore.Http;
@@ -31,8 +33,25 @@ namespace Online_Taxi.Controllers
             }
         }
 
-        //[HttpPost("CreateTrip")]
-        //public async Task<ActionResult<FluentResults.Result>> CreateTrip([FromBody] CreateTripRequest request)
+        [HttpPost("CreateTrip")]
+        public async Task<ActionResult<FluentResults.Result>> CreateTrip([FromBody] CreateTripRequest request)
+        {
+            FluentResults.Result result = await Mediator.Send(request);
+
+            if (result.IsSuccess)
+            {
+                return Ok(value: result);
+            }
+            else
+            {
+                return BadRequest(error: result);
+            }
+        }
+
+
+
+        //[HttpPost("CancelTrip")]
+        //public async Task<ActionResult<FluentResults.Result>> CancelTrip([FromBody] CancelTripRequest request)
         //{
         //    FluentResults.Result result = await Mediator.Send(request);
 
@@ -45,5 +64,7 @@ namespace Online_Taxi.Controllers
         //        return BadRequest(error: result);
         //    }
         //}
+
+
     }
 }
