@@ -22,6 +22,16 @@ namespace _3_Infrastructure.Repositories.Trip
             await _dbConnection.InsertAsync<Core.Entities.Trip_req>(trip_req);
         }
 
+
+        public async Task UpdateIsFinishTripReq(Guid passengerId)
+        {
+            var DParameter = new DynamicParameters();
+            DParameter.Add("@passengerId", passengerId);
+            await _dbConnection.QueryAsync("UPDATE [dbo].[Trip_req] SET IsFinish = 1 where passengerId=@passengerId ", DParameter);
+        }
+
+
+
         public async Task<IEnumerable<Trip_req>> GetNearestOrigins(double lat1, double long2)
         {
 
@@ -39,6 +49,8 @@ namespace _3_Infrastructure.Repositories.Trip
 
 
         }
+
+
 
         public async Task<IEnumerable<DriverReq>> GetNearestDriverOrigins(double lat1, double long2)
         {
@@ -61,12 +73,14 @@ namespace _3_Infrastructure.Repositories.Trip
 
 
 
-        public async Task<IEnumerable<Trip_req>> GetNearestDest(double lat1, double long2)
+        public async Task<IEnumerable<Trip_req>> GetNearestDest(double Slat, double Slong,double Dlat, double Dlong)
         {
 
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@Lat1", lat1);
-            parameters.Add("@Long1", long2);
+            parameters.Add("@Slat", Slat);
+            parameters.Add("@Slong", Slong);
+            parameters.Add("@Dlat", Dlat);
+            parameters.Add("@Dlong", Dlong);
 
             var NearestTripReqList = await _dbConnection.QueryAsync<Trip_req>(
              sql: "[dbo].[get_nearest_destinations]",

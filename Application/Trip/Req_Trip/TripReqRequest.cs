@@ -9,12 +9,13 @@ using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Application.Trip.Req_Trip
 {
-    public class TripReqRequest : IRequest<Result>
+    public class TripReqRequest : IRequest<Result<int>>
     {
         public LocationModel sourceAndDest { get; set; }
 
@@ -23,8 +24,8 @@ namespace Application.Trip.Req_Trip
         public int passesNum { get; set; }
 
         public Guid passengerId { get; set; }
-
-        public class TripReqRequestHandler : IRequestHandler<TripReqRequest, Result>
+        public bool IsFinish { get; set; }
+        public class TripReqRequestHandler : IRequestHandler<TripReqRequest, Result<int>>
         {
             private readonly Infrastructure.IUnitOfWork _unitOfWork;
             private readonly IMediator _mediator;
@@ -42,9 +43,9 @@ namespace Application.Trip.Req_Trip
                 _hub = hub;
             }
              
-            public async Task<Result> Handle(TripReqRequest request, CancellationToken cancellationToken)
+            public async Task<Result<int>> Handle(TripReqRequest request, CancellationToken cancellationToken)
             {
-                var result = new Result();
+                var result = new Result<int>();
 
                 //Computing firstPrice 
                 var d1 = request.sourceAndDest.SLatitude * (Math.PI / 180.0);
@@ -80,24 +81,37 @@ namespace Application.Trip.Req_Trip
                     passengerId = request.passengerId,
                     firstPrice = firstPrice,
                     passesNum = request.passesNum,
-                    Id = Guid.NewGuid()
+                    Id = Guid.NewGuid(),
+                    IsFinish = false
                 };
 
                 await _unitOfWork.TripReq.InsertTripReq(trip_req);
 
-                //get nearest trip request with source
-                var nearestOrigin = await _unitOfWork.TripReq.GetNearestOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
-                var nearestSourseReq = nearestOrigin.AsList();
+                ////get nearest trip request with source
+                //var nearestOrigin = await _unitOfWork.TripReq.GetNearestOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
+                //var nearestSourseReq = nearestOrigin.AsList();
 
 
                 //get nearest trip request with destination from which are nearest origins
-                var nearestdest = await _unitOfWork.TripReq.GetNearestDest(request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude);
+                var nearestdest = await _unitOfWork.TripReq.GetNearestDest(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude,
+                    request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude);
                 var nearestDestReq = nearestdest.AsList();
+
+                if (nearestDestReq.Count==0)
+                {
+                    return result.WithValue(3);
+                }
 
                 //get nearest Driver request with source
                 var nearestDriverOrigin = await _unitOfWork.TripReq.GetNearestDriverOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
-                var nearestDriverSourseReq = nearestDriverOrigin.AsList();
-               
+                var nearestDriversSourseReq = nearestDriverOrigin.AsList();
+                if (nearestDestReq.Count == 0)
+                {
+                    return result.WithValue(3);
+                }
+                var nearestDriverSourseReq = nearestDriversSourseReq.GroupBy(x => x.DriverId).Select(s => s.First()).ToList();
+
+
                 //create trip with nearest triprequest
                 if (trip_req.passesNum == 0)
                 {
@@ -110,26 +124,41 @@ namespace Application.Trip.Req_Trip
                     DParameter2.Add("@Id", UserId);
                     var user = _dbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where Id=@Id ", DParameter2);
 
-                    Core.Entities.DataModels.SubPreTrip subPreTrip = new()
-                    {
-                        SLongitude = request.sourceAndDest.SLongitude,
-                        SLatitude = request.sourceAndDest.SLatitude,
-                        DLongitude = request.sourceAndDest.DLongitude,
-                        DLatitude = request.sourceAndDest.DLatitude,
-                        username = user.username,
-                        phoneNo = user.phoneNo,
-                        Id = Guid.NewGuid()
-                    };
-                    await _unitOfWork.SubPreTripRepository.InsertSubPreTrip(subPreTrip);
+                    //Core.Entities.DataModels.SubPreTrip subPreTrip = new()
+                    //{
+                    //    SLongitude = request.sourceAndDest.SLongitude,
+                    //    SLatitude = request.sourceAndDest.SLatitude,
+                    //    DLongitude = request.sourceAndDest.DLongitude,
+                    //    DLatitude = request.sourceAndDest.DLatitude,
+                    //    username = user.username,
+                    //    phoneNo = user.phoneNo,
+                    //    Id = Guid.NewGuid()
+                    //};
+                    //await _unitOfWork.SubPreTripRepository.InsertSubPreTrip(subPreTrip);
 
                     Core.Entities.DataModels.PreTrip pretrip = new()
                     {
-                        SubPreTrip1Id = subPreTrip.Id,
+                        SLongitude1 = request.sourceAndDest.SLongitude,
+                        SLatitude1 = request.sourceAndDest.SLatitude,
+                        DLongitude1 = request.sourceAndDest.DLongitude,
+                        DLatitude1 = request.sourceAndDest.DLatitude,
+                        username1 = user.username,
+                        phoneNo1 = user.phoneNo,
+                        //
                         IsProcessed = false,
                         Id = Guid.NewGuid()
 
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip);
+                    try
+                    {
+                        
+                    }
+                    catch (Exception ex)
+                    {
+
+                    };
+                    
                     List<PreTrip> pretripList = new();
                    //send to hub
                     foreach (var driver in nearestDriverSourseReq)
@@ -142,6 +171,8 @@ namespace Application.Trip.Req_Trip
                         //await _hub.invoke(SendToList);
 
                     };
+
+                    //result.
 
                 }
                 else if (trip_req.passesNum == 1)
@@ -158,7 +189,19 @@ namespace Application.Trip.Req_Trip
                     //get user model from passengerId 2
                     var DParameter1 = new DynamicParameters();
                     DParameter1.Add("@Id", nearestDestReq[0].passengerId);
-                    var UserId1 = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
+                    var UserId1 = _dbConnection.QueryFirst<Guid?>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
+
+                    if (UserId1 == null)
+                    {
+                        return result.WithValue(3);
+                    }
+                    else if(UserId1 != null)
+                    {
+                        var connectionId = await _redisServices.GetFromRedis(nearestDestReq[0].passengerId);
+                        await _hub.Clients.Client(connectionId).BroadcastOutfitResultToPassnger(1);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId);
+                    }
+
 
                     var DParameter4 = new DynamicParameters();
                     DParameter4.Add("@Id", UserId1);
@@ -170,41 +213,27 @@ namespace Application.Trip.Req_Trip
                     DParameter3.Add("@Id", nearestDestReq[0].LocationId);
                     var locModel = _dbConnection.QueryFirst<LocationModel>("SELECT *  FROM [dbo].[LocationModel] where Id=@Id ", DParameter3);
 
-
-                    Core.Entities.DataModels.SubPreTrip subPreTrip1 = new()
-                    {
-
-                        SLongitude = request.sourceAndDest.SLongitude,
-                        SLatitude = request.sourceAndDest.SLatitude,
-                        DLongitude = request.sourceAndDest.DLongitude,
-                        DLatitude = request.sourceAndDest.DLatitude,
-                        username = user.username,
-                        phoneNo = user.phoneNo,
-                        Id = Guid.NewGuid()
-
-                    };
-
-                    await _unitOfWork.SubPreTripRepository.InsertSubPreTrip(subPreTrip1);
-
-
-                    Core.Entities.DataModels.SubPreTrip subPreTrip2 = new()
-                    {
-                        SLongitude =locModel.SLongitude,
-                            SLatitude =locModel.SLatitude,
-                            DLongitude =locModel.DLongitude,
-                            DLatitude =locModel.DLatitude,
-                            username =user4.username,
-                            phoneNo =user4.phoneNo,
-                            Id = Guid.NewGuid()
-
-                    };
-                    await _unitOfWork.SubPreTripRepository.InsertSubPreTrip(subPreTrip2);
+                    
+                    
 
                     Core.Entities.DataModels.PreTrip pretrip2 = new()
                     {
-                        SubPreTrip1Id = subPreTrip1.Id,
-                        SubPreTrip2Id = subPreTrip2.Id,
-                        IsProcessed = false
+                        SLongitude1 = request.sourceAndDest.SLongitude,
+                        SLatitude1 = request.sourceAndDest.SLatitude,
+                        DLongitude1 = request.sourceAndDest.DLongitude,
+                        DLatitude1 = request.sourceAndDest.DLatitude,
+                        username1 = user.username,
+                        phoneNo1 = user.phoneNo,
+                        //2
+                        SLongitude2 = locModel.SLongitude,
+                        SLatitude2 = locModel.SLatitude,
+                        DLongitude2 = locModel.DLongitude,
+                        DLatitude2 = locModel.DLatitude,
+                        username2 = user4.username,
+                        phoneNo2 = user4.phoneNo,
+                        //
+                        IsProcessed = false,
+                         Id = Guid.NewGuid()
 
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip2);
@@ -235,19 +264,43 @@ namespace Application.Trip.Req_Trip
                     DParameter2.Add("@Id", UserId);
                     var user = _dbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where Id=@Id ", DParameter2);
 
+
+                   
+
+
                     //get user model from passengerId 2
                     var DParameter1 = new DynamicParameters();
                     DParameter1.Add("@Id", nearestDestReq[0].passengerId);
-                    var UserId1 = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
+                    var UserId1 = _dbConnection.QueryFirst<Guid?>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
+
+
+                    var DParameter6 = new DynamicParameters();
+                    DParameter6.Add("@Id", nearestDestReq[1].passengerId);
+                    var UserId2 = _dbConnection.QueryFirst<Guid?>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter6);
+
+
+                    if (UserId1 == null && UserId2 == null)
+                    {
+                        return result.WithValue(3);
+                    }
+                    else if (UserId1 != null && UserId2 != null)
+                    {
+                        //passenger1
+                        var connectionId1 = await _redisServices.GetFromRedis(nearestDestReq[0].passengerId);
+                        await _hub.Clients.Client(connectionId1).BroadcastOutfitResultToPassnger(1);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId);
+                        //passenger2
+                        var connectionId2 = await _redisServices.GetFromRedis(nearestDestReq[1].passengerId);
+                        await _hub.Clients.Client(connectionId2).BroadcastOutfitResultToPassnger(1);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[1].passengerId);
+                    }
 
                     var DParameter4 = new DynamicParameters();
                     DParameter4.Add("@Id", UserId1);
                     var user4 = _dbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where Id=@Id ", DParameter4);
 
                     //get user model from passengerId 3
-                    var DParameter6 = new DynamicParameters();
-                    DParameter6.Add("@Id", nearestDestReq[1].passengerId);
-                    var UserId2 = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter6);
+                   
 
                     var DParameter7 = new DynamicParameters();
                     DParameter7.Add("@Id", UserId2);
@@ -265,48 +318,32 @@ namespace Application.Trip.Req_Trip
                     var locModel1 = _dbConnection.QueryFirst<LocationModel>("SELECT *  FROM [dbo].[LocationModel] where Id=@Id ", DParameter5);
 
 
-                    Core.Entities.DataModels.SubPreTrip subPreTrip1 = new()
-                    {
-
-                        SLongitude = request.sourceAndDest.SLongitude,
-                        SLatitude = request.sourceAndDest.SLatitude,
-                        DLongitude = request.sourceAndDest.DLongitude,
-                        DLatitude = request.sourceAndDest.DLatitude,
-                        username = user.username,
-                        phoneNo = user.phoneNo
-
-                    };
-                    await _unitOfWork.SubPreTripRepository.InsertSubPreTrip(subPreTrip1);
-
-                    Core.Entities.DataModels.SubPreTrip subPreTrip2 = new()
-                    {
-                        SLongitude = locModel.SLongitude,
-                        SLatitude = locModel.SLatitude,
-                        DLongitude = locModel.DLongitude,
-                        DLatitude = locModel.DLatitude,
-                        username = user4.username,
-                        phoneNo = user4.phoneNo
-
-                    };
-                    await _unitOfWork.SubPreTripRepository.InsertSubPreTrip(subPreTrip2);
-
-                    Core.Entities.DataModels.SubPreTrip subPreTrip3 = new()
-                    {
-                        SLongitude = locModel1.SLongitude,
-                        SLatitude = locModel1.SLatitude,
-                        DLongitude = locModel1.DLongitude,
-                        DLatitude = locModel1.DLatitude,
-                        username = user6.username,
-                        phoneNo = user6.phoneNo
-
-                    };
-                    await _unitOfWork.SubPreTripRepository.InsertSubPreTrip(subPreTrip3);
+                   
 
                     Core.Entities.DataModels.PreTrip pretrip1 = new()
                     {
-                        SubPreTrip1Id = subPreTrip1.Id,
-                        SubPreTrip2Id = subPreTrip2.Id,
-                        SubPreTrip3Id = subPreTrip3.Id,
+                        SLongitude1 = request.sourceAndDest.SLongitude,
+                        SLatitude1 = request.sourceAndDest.SLatitude,
+                        DLongitude1 = request.sourceAndDest.DLongitude,
+                        DLatitude1 = request.sourceAndDest.DLatitude,
+                        username1 = user.username,
+                        phoneNo1 = user.phoneNo,
+                        //2
+                        SLongitude2 = locModel.SLongitude,
+                        SLatitude2 = locModel.SLatitude,
+                        DLongitude2 = locModel.DLongitude,
+                        DLatitude2 = locModel.DLatitude,
+                        username2 = user4.username,
+                        phoneNo2 = user4.phoneNo,
+                        //3
+                        SLongitude3 = locModel.SLongitude,
+                        SLatitude3 = locModel.SLatitude,
+                        DLongitude3 = locModel.DLongitude,
+                        DLatitude3 = locModel.DLatitude,
+                        username3 = user4.username,
+                        phoneNo3 = user4.phoneNo,
+                        //
+                        Id = Guid.NewGuid(),
                         IsProcessed = false
 
                     };

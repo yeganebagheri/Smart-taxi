@@ -54,7 +54,7 @@ namespace Application.Hubs
 
 
         public override async Task OnConnectedAsync()
-       {
+        {
            
             var httpCtx = Context.GetHttpContext();
             var someHeaderValue = httpCtx.Request.Query["access_token"].ToString();

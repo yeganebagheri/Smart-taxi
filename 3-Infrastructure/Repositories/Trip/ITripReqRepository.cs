@@ -11,7 +11,8 @@ namespace _3_Infrastructure.Repositories.Trip
     {
         public Task InsertTripReq(Core.Entities.Trip_req user);
         public Task<IEnumerable<Trip_req>> GetNearestOrigins(double lat1 , double long2 );
-        public Task<IEnumerable<Trip_req>> GetNearestDest(double lat1, double long2);
+        public Task<IEnumerable<Trip_req>> GetNearestDest(double Slat, double Slong, double Dlat, double Dlong);
         public Task<IEnumerable<DriverReq>> GetNearestDriverOrigins(double lat1, double long2);
+        public Task UpdateIsFinishTripReq(Guid passengerId);
     }
 }

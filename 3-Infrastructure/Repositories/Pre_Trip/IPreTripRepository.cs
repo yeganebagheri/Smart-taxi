@@ -1,4 +1,5 @@
-﻿using Dapper.FastCrud;
+﻿using Dapper;
+using Dapper.FastCrud;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +12,7 @@ namespace _3_Infrastructure.Repositories.Pre_Trip
     public interface IPreTripRepository
     {
         public Task InsertPreTrip(Core.Entities.DataModels.PreTrip subPreTrip);
+        public Task UpdateIsProcessedPreTrip(Guid passengerId);
         public class PreTripRepository : IPreTripRepository
         {
             private readonly IDbConnection _dbConnection;
@@ -25,6 +27,15 @@ namespace _3_Infrastructure.Repositories.Pre_Trip
 
 
             }
+
+            public async Task UpdateIsProcessedPreTrip(Guid PreTripId)
+            {
+                var DParameter = new DynamicParameters();
+                DParameter.Add("@Id", PreTripId);
+                await _dbConnection.QueryAsync("UPDATE [dbo].[PreTrip] SET IsProcessed = 1 where Id=@Id ", DParameter);
+            }
+
+
         }
     }
 }

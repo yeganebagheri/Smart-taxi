@@ -41,11 +41,15 @@ namespace Application.Services
             string serializedCustomerList;
             var stringKey = redisKey.ToString();
             var redisCustomerList = await _cache.GetAsync(stringKey);
-
+            
             if (redisCustomerList != null)
             {
-                serializedCustomerList = Encoding.UTF8.GetString(redisCustomerList);
-                //var weatherList = JsonConvert.DeserializeObject<List<string>>(serializedCustomerList);
+                await _cache.RemoveAsync(stringKey);
+                //serializedCustomerList = Encoding.UTF8.GetString(redisCustomerList);
+                var val = JsonConvert.SerializeObject(value);
+                var byteValue = Encoding.UTF8.GetBytes(val);
+                var options = new DistributedCacheEntryOptions().SetAbsoluteExpiration(DateTime.Now.AddMinutes(10)).SetSlidingExpiration(TimeSpan.FromMinutes(20));
+                await _cache.SetAsync(stringKey, byteValue, options);
             }
             else
             {

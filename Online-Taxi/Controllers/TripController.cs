@@ -17,9 +17,9 @@ namespace Online_Taxi.Controllers
         }
 
         [HttpPost("TripRequest")]
-        public async Task<ActionResult<FluentResults.Result>> TripRequest([FromBody] TripReqRequest request)
+        public async Task<ActionResult<FluentResults.Result<int>>> TripRequest([FromBody] TripReqRequest request)
         {
-            FluentResults.Result result = await Mediator.Send(request);
+            FluentResults.Result<int> result = await Mediator.Send(request);
 
             if (result.IsSuccess)
             {

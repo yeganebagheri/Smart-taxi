@@ -19,5 +19,6 @@ namespace Core.Entities
         public Guid passengerId { get; set; }
         public string firstPrice { get; set; }
         public int passesNum { get; set; }
+        public bool IsFinish { get; set; }
     }
 }

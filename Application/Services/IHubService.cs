@@ -10,6 +10,7 @@ namespace Application.Services
     public interface IHubService
     {
         Task BroadcastTripToDriver(List<PreTrip> preTrips);
+        Task BroadcastOutfitResultToPassnger(int Result);
         Task ConnectionOn(string connectionID);
     }
 }
