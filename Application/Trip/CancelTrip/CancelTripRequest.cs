@@ -36,7 +36,7 @@ namespace Application.Trip.CancelTrip
                 var result = new Result();
                 //var DParameter3 = new DynamicParameters();
                 //DParameter3.Add("@Id", request.PreTripId);
-                //var preTrip = _dbConnection.QueryFirst<PreTrip>("SELECT *  FROM [dbo].[PreTrip] where Id=@Id ", DParameter3);
+                //var preTrip =await  _dbConnection.QueryFirstAsync<PreTrip>("SELECT *  FROM [dbo].[PreTrip] where Id=@Id ", DParameter3);
 
 
 
