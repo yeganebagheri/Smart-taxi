@@ -92,7 +92,7 @@ namespace Application.Driver
                     var distance = 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
                     if (distance < 27644445)
                     {
-                        await _unitOfWork.PreTripRepository.UpdateIsProcessedPreTrip(preTrip.Id);
+                       // await _unitOfWork.PreTripRepository.UpdateIsProcessedPreTrip(preTrip.Id);
                         ListpreTrips.Add(preTrip);
                     }
                 }

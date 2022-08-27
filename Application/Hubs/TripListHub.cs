@@ -40,7 +40,7 @@ namespace Application.Hubs
             var res = await _mediator.Send(driverReq1); 
           // await _redisServices.SetInRedis(new Guid(driverReq1.DriverId), Context.ConnectionId);
             // return message;
-            await Clients.Client(Context.ConnectionId).BroadcastTripToDriver(/*"broadcastTripList",*/ res);
+            await Clients.Client(Context.ConnectionId).BroadcastTripToDriver(res);
 
         }
 

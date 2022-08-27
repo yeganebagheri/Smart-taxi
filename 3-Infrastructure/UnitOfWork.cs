@@ -44,6 +44,7 @@ namespace Infrastructure
             SubPreTripRepository = subPreTripRepository;
             PreTripRepository = preTripRepository;
             DriverReqRep = driverReqRep;
+            DriverRep = driverRepository;
 
         }
 

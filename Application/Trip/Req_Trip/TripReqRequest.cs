@@ -61,6 +61,24 @@ namespace Application.Trip.Req_Trip
                     firstPrice = "10000";
                 }
 
+                //get user model from passengerId (Requesting passenger)
+                var DParameter = new DynamicParameters();
+                DParameter.Add("@Id", request.passengerId);
+                var UserId = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter);
+
+                var DParameter2 = new DynamicParameters();
+                DParameter2.Add("@Id", UserId);
+                var user = _dbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where Id=@Id ", DParameter2);
+
+                //check this user doesn`t request twice
+                var DParameter0 = new DynamicParameters();
+                DParameter0.Add("@passengerId", request.passengerId);
+                var trip_reqExist = await _dbConnection.QueryAsync<Guid?>("SELECT Id  FROM [dbo].[Trip_req] where passengerId=@passengerId and IsFinish=0", DParameter0);
+                if(trip_reqExist.Count() != 0)
+                {
+                    return result.WithValue(0);
+                }
+
                 //insert in LocationModel
                 Core.Entities.LocationModel locationModel = new()
                 {
@@ -94,7 +112,8 @@ namespace Application.Trip.Req_Trip
 
                 //get nearest trip request with destination from which are nearest origins
                 var nearestdest = await _unitOfWork.TripReq.GetNearestDest(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude,
-                    request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude);
+                    request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude , request.passesNum ,request.passengerId);
+
                 var nearestDestReq = nearestdest.AsList();
 
                 if (nearestDestReq.Count==0)
@@ -102,10 +121,18 @@ namespace Application.Trip.Req_Trip
                     return result.WithValue(3);
                 }
 
+                //match number of passeNum
+                if(request.passesNum==1)
+                {
+
+                }else if(request.passesNum==2)
+                {
+
+                };
                 //get nearest Driver request with source
                 var nearestDriverOrigin = await _unitOfWork.TripReq.GetNearestDriverOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
                 var nearestDriversSourseReq = nearestDriverOrigin.AsList();
-                if (nearestDestReq.Count == 0)
+                if (nearestDriversSourseReq.Count == 0)
                 {
                     return result.WithValue(3);
                 }
@@ -115,14 +142,7 @@ namespace Application.Trip.Req_Trip
                 //create trip with nearest triprequest
                 if (trip_req.passesNum == 0)
                 {
-                    //get user model from passengerId (Requesting passenger)
-                    var DParameter = new DynamicParameters();
-                    DParameter.Add("@Id", request.passengerId);
-                    var UserId = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter);
-
-                    var DParameter2 = new DynamicParameters();
-                    DParameter2.Add("@Id", UserId);
-                    var user = _dbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where Id=@Id ", DParameter2);
+                    
 
                     //Core.Entities.DataModels.SubPreTrip subPreTrip = new()
                     //{
@@ -177,29 +197,25 @@ namespace Application.Trip.Req_Trip
                 }
                 else if (trip_req.passesNum == 1)
                 {
-                    //get user model from passengerId (Requesting passenger)
-                    var DParameter = new DynamicParameters();
-                    DParameter.Add("@Id", request.passengerId);
-                    var UserId = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter);
-
-                    var DParameter2 = new DynamicParameters();
-                    DParameter2.Add("@Id", UserId);
-                    var user = _dbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where Id=@Id ", DParameter2);
+                   
 
                     //get user model from passengerId 2
                     var DParameter1 = new DynamicParameters();
                     DParameter1.Add("@Id", nearestDestReq[0].passengerId);
                     var UserId1 = _dbConnection.QueryFirst<Guid?>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
 
+                    //Companion not found
                     if (UserId1 == null)
                     {
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(request.passengerId, 0);
                         return result.WithValue(3);
                     }
-                    else if(UserId1 != null)
+                    //Companion found
+                    else if (UserId1 != null)
                     {
                         var connectionId = await _redisServices.GetFromRedis(nearestDestReq[0].passengerId);
                         await _hub.Clients.Client(connectionId).BroadcastOutfitResultToPassnger(1);
-                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId , 1);
                     }
 
 
@@ -255,19 +271,7 @@ namespace Application.Trip.Req_Trip
                 }
                 else if (trip_req.passesNum == 2)
                 {
-                    //get user model from passengerId (Requesting passenger)
-                    var DParameter = new DynamicParameters();
-                    DParameter.Add("@Id", request.passengerId);
-                    var UserId = _dbConnection.QueryFirst<Guid>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter);
-
-                    var DParameter2 = new DynamicParameters();
-                    DParameter2.Add("@Id", UserId);
-                    var user = _dbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where Id=@Id ", DParameter2);
-
-
-                   
-
-
+                    
                     //get user model from passengerId 2
                     var DParameter1 = new DynamicParameters();
                     DParameter1.Add("@Id", nearestDestReq[0].passengerId);
@@ -278,21 +282,35 @@ namespace Application.Trip.Req_Trip
                     DParameter6.Add("@Id", nearestDestReq[1].passengerId);
                     var UserId2 = _dbConnection.QueryFirst<Guid?>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter6);
 
-
+                    //Companions not found
                     if (UserId1 == null && UserId2 == null)
                     {
                         return result.WithValue(3);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(request.passengerId, 0);
                     }
+                    //both Companion found
                     else if (UserId1 != null && UserId2 != null)
                     {
                         //passenger1
                         var connectionId1 = await _redisServices.GetFromRedis(nearestDestReq[0].passengerId);
                         await _hub.Clients.Client(connectionId1).BroadcastOutfitResultToPassnger(1);
-                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId , 1);
                         //passenger2
                         var connectionId2 = await _redisServices.GetFromRedis(nearestDestReq[1].passengerId);
                         await _hub.Clients.Client(connectionId2).BroadcastOutfitResultToPassnger(1);
-                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[1].passengerId);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[1].passengerId , 1);
+                    }
+                    //one Companion found another one not found
+                    else if (UserId1 != null && UserId2 == null)
+                    {
+                        //passenger1
+                        var connectionId1 = await _redisServices.GetFromRedis(nearestDestReq[0].passengerId);
+                        await _hub.Clients.Client(connectionId1).BroadcastOutfitResultToPassnger(1);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId, 1);
+                        //passenger2
+                        var connectionId2 = await _redisServices.GetFromRedis(nearestDestReq[1].passengerId);
+                        await _hub.Clients.Client(connectionId2).BroadcastOutfitResultToPassnger(1);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[1].passengerId, 1);
                     }
 
                     var DParameter4 = new DynamicParameters();

@@ -23,11 +23,12 @@ namespace _3_Infrastructure.Repositories.Trip
         }
 
 
-        public async Task UpdateIsFinishTripReq(Guid passengerId)
+        public async Task UpdateIsFinishTripReq(Guid passengerId, int IsFinish)
         {
             var DParameter = new DynamicParameters();
             DParameter.Add("@passengerId", passengerId);
-            await _dbConnection.QueryAsync("UPDATE [dbo].[Trip_req] SET IsFinish = 1 where passengerId=@passengerId ", DParameter);
+            DParameter.Add("@IsFinish", IsFinish);
+            await _dbConnection.QueryAsync("UPDATE [dbo].[Trip_req] SET IsFinish =@IsFinish where passengerId=@passengerId ", DParameter);
         }
 
 
@@ -73,7 +74,7 @@ namespace _3_Infrastructure.Repositories.Trip
 
 
 
-        public async Task<IEnumerable<Trip_req>> GetNearestDest(double Slat, double Slong,double Dlat, double Dlong)
+        public async Task<IEnumerable<Trip_req>> GetNearestDest(double Slat, double Slong,double Dlat, double Dlong , int passnum , Guid passengerId)
         {
 
             DynamicParameters parameters = new DynamicParameters();
@@ -81,6 +82,8 @@ namespace _3_Infrastructure.Repositories.Trip
             parameters.Add("@Slong", Slong);
             parameters.Add("@Dlat", Dlat);
             parameters.Add("@Dlong", Dlong);
+            parameters.Add("@PassesNum", passnum);
+            parameters.Add("@PassengerId", passengerId);
 
             var NearestTripReqList = await _dbConnection.QueryAsync<Trip_req>(
              sql: "[dbo].[get_nearest_destinations]",
