@@ -18,7 +18,6 @@ namespace Application.Trip.CancelTrip
 {
     public class CancelTripRequest : IRequest<Result<int>>
     {
-        public Guid PreTripId { get; set; }
         public Guid  PassengerId{ get; set; }
         public string phoneNo { get; set; }
         public class CancelTripRequestHandler : IRequestHandler<CancelTripRequest,Result<int>>
@@ -46,7 +45,7 @@ namespace Application.Trip.CancelTrip
 
                 //delete trip-req
                 var DParameter2 = new DynamicParameters();
-                DParameter2.Add("@passengerId", trip_req.Id);
+                DParameter2.Add("@Id", trip_req.Id);
                 var Deleted_Trip_req = await _dbConnection.ExecuteAsync("delete  FROM [dbo].[Trip_req] where Id=@Id ", DParameter2);
 
               
