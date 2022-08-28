@@ -19,7 +19,6 @@ namespace Application.Trip.CancelTrip
     public class CancelTripRequest : IRequest<Result<int>>
     {
         public Guid  PassengerId{ get; set; }
-        public string phoneNo { get; set; }
         public class CancelTripRequestHandler : IRequestHandler<CancelTripRequest,Result<int>>
         {
             private readonly Infrastructure.IUnitOfWork _unitOfWork;
