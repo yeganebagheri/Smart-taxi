@@ -50,20 +50,20 @@ namespace Online_Taxi.Controllers
 
 
 
-        //[HttpPost("CancelTrip")]
-        //public async Task<ActionResult<FluentResults.Result>> CancelTrip([FromBody] CancelTripRequest request)
-        //{
-        //    FluentResults.Result result = await Mediator.Send(request);
+        [HttpPost("CancelTrip")]
+        public async Task<ActionResult<FluentResults.Result<int>>> CancelTrip([FromBody] CancelTripRequest request)
+        {
+            FluentResults.Result<int> result = await Mediator.Send(request);
 
-        //    if (result.IsSuccess)
-        //    {
-        //        return Ok(value: result);
-        //    }
-        //    else
-        //    {
-        //        return BadRequest(error: result);
-        //    }
-        //}
+            if (result.IsSuccess)
+            {
+                return Ok(value: result);
+            }
+            else
+            {
+                return BadRequest(error: result);
+            }
+        }
 
 
     }

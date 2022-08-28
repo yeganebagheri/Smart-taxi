@@ -1,5 +1,6 @@
 ﻿using Application.Hubs;
 using Application.Services;
+using Core.Entities;
 using Core.Entities.DataModels;
 using Dapper;
 using FluentResults;
@@ -15,39 +16,42 @@ using System.Threading.Tasks;
 
 namespace Application.Trip.CancelTrip
 {
-    public class CancelTripRequest : IRequest<Result>
+    public class CancelTripRequest : IRequest<Result<int>>
     {
         public Guid PreTripId { get; set; }
-        public Guid  PhoneNum{ get; set; }
-        public class CancelTripRequestHandler : IRequestHandler<CancelTripRequest,Result>
+        public Guid  PassengerId{ get; set; }
+        public string phoneNo { get; set; }
+        public class CancelTripRequestHandler : IRequestHandler<CancelTripRequest,Result<int>>
         {
             private readonly Infrastructure.IUnitOfWork _unitOfWork;
             private readonly IHubContext<TripListHub, IHubService> _hub;
             private readonly IDbConnection _dbConnection;
-            public CancelTripRequestHandler(IDbConnection dbConnection, Infrastructure.IUnitOfWork unitOfWork, IHubContext<TripListHub, IHubService> hub)
+            private readonly IRedisServices _redisServices;
+            public CancelTripRequestHandler(IRedisServices redisServices, IDbConnection dbConnection,
+                Infrastructure.IUnitOfWork unitOfWork, IHubContext<TripListHub, IHubService> hub)
             {
                 _unitOfWork = unitOfWork;
                 _dbConnection = dbConnection;
+                _redisServices = redisServices;
                 _hub = hub;
             }
 
-            public async Task<Result> Handle(CancelTripRequest request, CancellationToken cancellationToken)
+            public async Task<Result<int>> Handle(CancelTripRequest request, CancellationToken cancellationToken)
             {
-                var result = new Result();
-                //var DParameter3 = new DynamicParameters();
-                //DParameter3.Add("@Id", request.PreTripId);
-                //var preTrip =await  _dbConnection.QueryFirstAsync<PreTrip>("SELECT *  FROM [dbo].[PreTrip] where Id=@Id ", DParameter3);
+                var result = new Result<int>();
+                //get trip-req
+                var DParameter = new DynamicParameters();
+                DParameter.Add("@passengerId", request.PassengerId);
+                var trip_req = await _dbConnection.QueryFirstAsync<Trip_req>("select *  FROM [dbo].[Trip_req] where passengerId=@passengerId and IsFinish = 0 ", DParameter);
 
+                //delete trip-req
+                var DParameter2 = new DynamicParameters();
+                DParameter2.Add("@passengerId", trip_req.Id);
+                var Deleted_Trip_req = await _dbConnection.ExecuteAsync("delete  FROM [dbo].[Trip_req] where Id=@Id ", DParameter2);
 
+              
 
-                ////send cancel message to other
-                //var connectionId = await _redisServices.GetFromRedis(preTrip.);
-                //await _hub.Clients.Client(connectionId).BroadcastOutfitResultToPassnger(1);
-                //await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId, 1);
-                ////delete PriTrip
-                //await _unitOfWork.PreTripRepository.DeletePreTrip(request.PreTripId);
-
-                return result;
+                return result.WithValue(Deleted_Trip_req);
             }
         }
 

@@ -56,8 +56,8 @@ namespace Application.Services
                 //var weatherList = _cache.GetDatabase();
                 var val = JsonConvert.SerializeObject(value);
                 var byteValue = Encoding.UTF8.GetBytes(val);
-                var options = new DistributedCacheEntryOptions().SetAbsoluteExpiration(DateTime.Now.AddMinutes(10)).SetSlidingExpiration(TimeSpan.FromMinutes(2));
-                await _cache.SetAsync(stringKey, byteValue, options);
+                //var options = new DistributedCacheEntryOptions().SetAbsoluteExpiration(DateTime.Now.AddMinutes(10)).SetSlidingExpiration(TimeSpan.FromMinutes(2));
+                await _cache.SetAsync(stringKey, byteValue);
 
             }
 

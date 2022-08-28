@@ -63,12 +63,6 @@ namespace Application.Hubs
             await _redisServices.SetInRedis(new Guid(Id), Context.ConnectionId);
             await base.OnConnectedAsync();
         }
-
-
-
-
-
-
          
     }
 }

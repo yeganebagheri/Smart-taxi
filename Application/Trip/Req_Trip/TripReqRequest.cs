@@ -178,7 +178,7 @@ namespace Application.Trip.Req_Trip
                     {
 
                     };
-                    
+                    await _unitOfWork.TripReq.UpdateIsFinishTripReq(request.passengerId, 1);
                     List<PreTrip> pretripList = new();
                    //send to hub
                     foreach (var driver in nearestDriverSourseReq)

@@ -46,31 +46,8 @@ namespace Application.Trip.MainTrip
                 {
                     result.WithError("!این سفر توسط یک راننده دیگر انتخاب شده");
                 }
-                //get user1 by phone
-                //var DParameter = new DynamicParameters();
-                //DParameter.Add("@phoneNo", preTrip.phoneNo1);
-                //var passUserId1 = _dbConnection.QueryFirst<Guid>("SELECT Id  FROM [dbo].[User] where phoneNo=@phoneNo ", DParameter);
 
-                //Guid? passUserId2 = null;
-                //if (preTrip.phoneNo2 != null )
-                //{
-                //    //get user2 by phone
-                //    var DParameter1 = new DynamicParameters();
-                //    DParameter1.Add("@phoneNo", preTrip.phoneNo2);
-                //    passUserId2 = _dbConnection.QueryFirst<Guid?>("SELECT Id  FROM [dbo].[User] where phoneNo=@phoneNo ", DParameter1);
-
-                //}
-                //Guid? passUserId3 = null;
-                //if (preTrip.phoneNo2 != null)
-                //{
-                //    //get user3 by phone
-                //    var DParameter2 = new DynamicParameters();
-                //    DParameter2.Add("@phoneNo", preTrip.phoneNo3);
-                //    passUserId3 = _dbConnection.QueryFirst<Guid?>("SELECT Id  FROM [dbo].[User] where phoneNo=@phoneNo ", DParameter2);
-
-                //}
-
-
+                
                 await _unitOfWork.PreTripRepository.UpdateIsProcessedPreTrip(request.PretripId);
 
 
