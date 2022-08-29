@@ -45,15 +45,12 @@ namespace Application.Services
             if (redisCustomerList != null)
             {
                 await _cache.RemoveAsync(stringKey);
-                //serializedCustomerList = Encoding.UTF8.GetString(redisCustomerList);
                 var val = JsonConvert.SerializeObject(value);
                 var byteValue = Encoding.UTF8.GetBytes(val);
-                var options = new DistributedCacheEntryOptions().SetAbsoluteExpiration(DateTime.Now.AddMinutes(10)).SetSlidingExpiration(TimeSpan.FromMinutes(20));
-                await _cache.SetAsync(stringKey, byteValue, options);
+               await _cache.SetAsync(stringKey, byteValue);
             }
             else
             {
-                //var weatherList = _cache.GetDatabase();
                 var val = JsonConvert.SerializeObject(value);
                 var byteValue = Encoding.UTF8.GetBytes(val);
                 //var options = new DistributedCacheEntryOptions().SetAbsoluteExpiration(DateTime.Now.AddMinutes(10)).SetSlidingExpiration(TimeSpan.FromMinutes(2));

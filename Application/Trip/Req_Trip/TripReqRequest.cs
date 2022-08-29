@@ -18,13 +18,8 @@ namespace Application.Trip.Req_Trip
     public class TripReqRequest : IRequest<Result<int>>
     {
         public LocationModel sourceAndDest { get; set; }
-
-        //public int firstPrice { get; set; }
-
         public int passesNum { get; set; }
-
         public Guid passengerId { get; set; }
-        public bool IsFinish { get; set; }
         public class TripReqRequestHandler : IRequestHandler<TripReqRequest, Result<int>>
         {
             private readonly Infrastructure.IUnitOfWork _unitOfWork;
@@ -46,21 +41,7 @@ namespace Application.Trip.Req_Trip
             public async Task<Result<int>> Handle(TripReqRequest request, CancellationToken cancellationToken)
             {
                 var result = new Result<int>();
-
-                //Computing firstPrice 
-                var d1 = request.sourceAndDest.SLatitude * (Math.PI / 180.0);
-                var num1 = request.sourceAndDest.SLongitude * (Math.PI / 180.0);
-                var d2 = request.sourceAndDest.DLatitude * (Math.PI / 180.0);
-                var num2 = request.sourceAndDest.DLongitude * (Math.PI / 180.0) - num1;
-                var d3 = Math.Pow(Math.Sin((d2 - d1) / 2.0), 2.0) +
-                         Math.Cos(d1) * Math.Cos(d2) * Math.Pow(Math.Sin(num2 / 2.0), 2.0);
-                var distance = 6376500.0 * (2.0 * Math.Atan2(Math.Sqrt(d3), Math.Sqrt(1.0 - d3)));
-                var firstPrice = "";
-                if (distance < 10)
-                {
-                    firstPrice = "10000";
-                }
-
+               
                 //get user model from passengerId (Requesting passenger)
                 var DParameter = new DynamicParameters();
                 DParameter.Add("@Id", request.passengerId);
@@ -97,7 +78,6 @@ namespace Application.Trip.Req_Trip
                 {
                     LocationId = locationModel.Id,
                     passengerId = request.passengerId,
-                    firstPrice = firstPrice,
                     passesNum = request.passesNum,
                     Id = Guid.NewGuid(),
                     IsFinish = false
@@ -110,25 +90,9 @@ namespace Application.Trip.Req_Trip
                 //var nearestSourseReq = nearestOrigin.AsList();
 
 
-                //get nearest trip request with destination from which are nearest origins
-                var nearestdest = await _unitOfWork.TripReq.GetNearestDest(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude,
-                    request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude , request.passesNum ,request.passengerId);
+                
 
-                var nearestDestReq = nearestdest.AsList();
-
-                if (nearestDestReq.Count==0)
-                {
-                    return result.WithValue(3);
-                }
-
-                //match number of passeNum
-                if(request.passesNum==1)
-                {
-
-                }else if(request.passesNum==2)
-                {
-
-                };
+               
                 //get nearest Driver request with source
                 var nearestDriverOrigin = await _unitOfWork.TripReq.GetNearestDriverOrigins(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude);
                 var nearestDriversSourseReq = nearestDriverOrigin.AsList();
@@ -142,19 +106,9 @@ namespace Application.Trip.Req_Trip
                 //create trip with nearest triprequest
                 if (trip_req.passesNum == 0)
                 {
-                    
-
-                    //Core.Entities.DataModels.SubPreTrip subPreTrip = new()
-                    //{
-                    //    SLongitude = request.sourceAndDest.SLongitude,
-                    //    SLatitude = request.sourceAndDest.SLatitude,
-                    //    DLongitude = request.sourceAndDest.DLongitude,
-                    //    DLatitude = request.sourceAndDest.DLatitude,
-                    //    username = user.username,
-                    //    phoneNo = user.phoneNo,
-                    //    Id = Guid.NewGuid()
-                    //};
-                    //await _unitOfWork.SubPreTripRepository.InsertSubPreTrip(subPreTrip);
+                    //price
+                    var distance1 = await _unitOfWork.TripReq.GetDistance(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude,
+                    request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude);
 
                     Core.Entities.DataModels.PreTrip pretrip = new()
                     {
@@ -166,18 +120,12 @@ namespace Application.Trip.Req_Trip
                         phoneNo1 = user.phoneNo,
                         //
                         IsProcessed = false,
-                        Id = Guid.NewGuid()
+                        Id = Guid.NewGuid(),
+                        Price1 = $"{distance1 * 4000}"
 
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip);
-                    try
-                    {
-                        
-                    }
-                    catch (Exception ex)
-                    {
-
-                    };
+                    
                     await _unitOfWork.TripReq.UpdateIsFinishTripReq(request.passengerId, 1);
                     List<PreTrip> pretripList = new();
                    //send to hub
@@ -185,19 +133,64 @@ namespace Application.Trip.Req_Trip
                     {
 
                         var connectionId = await _redisServices.GetFromRedis(driver.DriverId);
-                        //await _hub.Clients.Client(connectionId).BroadcastTripToDriver("broadcastTripList", preTrips);
                         pretripList.Add(pretrip);
                         await _hub.Clients.Client(connectionId).BroadcastTripToDriver(pretripList);
-                        //await _hub.invoke(SendToList);
 
                     };
 
-                    //result.
+                    
 
                 }
-                else if (trip_req.passesNum == 1)
+                //get nearest trip request with destination from which are nearest origins
+                var nearestdest = await _unitOfWork.TripReq.GetNearestDest(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude,
+                    request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude, request.passesNum, request.passengerId);
+
+                var nearestDestReq = nearestdest.AsList();
+
+                if (nearestDestReq.Count == 0)
                 {
-                   
+                    return result.WithValue(3);
+                }
+                if (trip_req.passesNum == 1)
+                {
+
+
+
+                    // get source and dest with locationId
+                    var DParameter3 = new DynamicParameters();
+                    DParameter3.Add("@Id", nearestDestReq[0].LocationId);
+                    var locModel = _dbConnection.QueryFirst<LocationModel>("SELECT *  FROM [dbo].[LocationModel] where Id=@Id ", DParameter3);
+
+
+                    //price1
+                    var distance1 = await _unitOfWork.TripReq.GetDistance(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude,
+                    request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude);
+                    var firstPrice1 = distance1 * 4000;
+
+                    //price2
+                    var distance2 = await _unitOfWork.TripReq.GetDistance(locModel.SLatitude, locModel.SLongitude,
+                    locModel.DLatitude, locModel.DLongitude);
+                    var firstPrice2 = distance1 * 4000;
+
+                    double[] numbers = new double[] { firstPrice1, firstPrice2 };
+                    double maximumNumber = numbers.Max();
+                    var mainPrice = firstPrice1 + firstPrice2;
+                    var mainDriverPrice = maximumNumber + maximumNumber / 2;
+                    double mainPrice1 = 0;
+                    double mainPrice2 = 0;
+                    if (maximumNumber== firstPrice1)
+                    {
+                         mainPrice1 = maximumNumber * mainDriverPrice / mainPrice * 2;
+                         mainPrice2 = firstPrice2 * mainDriverPrice / mainPrice;
+                    }
+                    if (maximumNumber == firstPrice2)
+                    {
+                         mainPrice1 = maximumNumber * mainDriverPrice / mainPrice;
+                         mainPrice2 = firstPrice2 * mainDriverPrice / mainPrice * 2;
+                    }
+
+
+
 
                     //get user model from passengerId 2
                     var DParameter1 = new DynamicParameters();
@@ -210,13 +203,7 @@ namespace Application.Trip.Req_Trip
                         await _unitOfWork.TripReq.UpdateIsFinishTripReq(request.passengerId, 0);
                         return result.WithValue(3);
                     }
-                    //Companion found
-                    else if (UserId1 != null)
-                    {
-                        var connectionId = await _redisServices.GetFromRedis(nearestDestReq[0].passengerId);
-                        await _hub.Clients.Client(connectionId).BroadcastOutfitResultToPassnger(1);
-                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId , 1);
-                    }
+                   
 
 
                     var DParameter4 = new DynamicParameters();
@@ -224,12 +211,6 @@ namespace Application.Trip.Req_Trip
                     var user4 = _dbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where Id=@Id ", DParameter4);
 
 
-                    // get source and dest with locationId
-                    var DParameter3 = new DynamicParameters();
-                    DParameter3.Add("@Id", nearestDestReq[0].LocationId);
-                    var locModel = _dbConnection.QueryFirst<LocationModel>("SELECT *  FROM [dbo].[LocationModel] where Id=@Id ", DParameter3);
-
-                    
                     
 
                     Core.Entities.DataModels.PreTrip pretrip2 = new()
@@ -240,6 +221,7 @@ namespace Application.Trip.Req_Trip
                         DLatitude1 = request.sourceAndDest.DLatitude,
                         username1 = user.username,
                         phoneNo1 = user.phoneNo,
+                        Price1 = $"{mainPrice1}",
                         //2
                         SLongitude2 = locModel.SLongitude,
                         SLatitude2 = locModel.SLatitude,
@@ -247,23 +229,32 @@ namespace Application.Trip.Req_Trip
                         DLatitude2 = locModel.DLatitude,
                         username2 = user4.username,
                         phoneNo2 = user4.phoneNo,
+                        Price2 = $"{mainPrice2}",
                         //
                         IsProcessed = false,
                          Id = Guid.NewGuid()
 
                     };
                     await _unitOfWork.PreTripRepository.InsertPreTrip(pretrip2);
+                    //Companion found
+                    if (UserId1 != null)
+                    {
+                        var connectionId = await _redisServices.GetFromRedis(nearestDestReq[0].passengerId);
+                        await _hub.Clients.Client(connectionId).BroadcastOutfitResultToPassnger(1, $"{mainPrice2}");
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId, 1);
+                    }
 
-                  
+                    var connectionId1 = await _redisServices.GetFromRedis(request.passengerId);
+                    await _hub.Clients.Client(connectionId1).BroadcastOutfitResultToPassnger(1, $"{mainPrice1}");
+                    await _unitOfWork.TripReq.UpdateIsFinishTripReq(request.passengerId, 1);
+
                     List<PreTrip> pretripList = new();
                     //send to hub
                     foreach (var driver in nearestDriverSourseReq)
                     {
                         var connectionId = await _redisServices.GetFromRedis(driver.DriverId);
-                        //await _hub.Clients.Client(connectionId).BroadcastTripToDriver("broadcastTripList", preTrips);
                         pretripList.Add(pretrip2);
                         await _hub.Clients.Client(connectionId).BroadcastTripToDriver(pretripList);
-                        //await _hub.invoke(SendToList);
 
                     };
 
@@ -271,13 +262,20 @@ namespace Application.Trip.Req_Trip
                 }
                 else if (trip_req.passesNum == 2)
                 {
-                    
+
+                    if (nearestDestReq[1].passengerId == Guid.Empty)
+                    {
+                        return result.WithValue(3);
+                        await _unitOfWork.TripReq.UpdateIsFinishTripReq(request.passengerId, 0);
+                    }
+
+
                     //get user model from passengerId 2
                     var DParameter1 = new DynamicParameters();
                     DParameter1.Add("@Id", nearestDestReq[0].passengerId);
                     var UserId1 = _dbConnection.QueryFirst<Guid?>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter1);
 
-
+                   
                     var DParameter6 = new DynamicParameters();
                     DParameter6.Add("@Id", nearestDestReq[1].passengerId);
                     var UserId2 = _dbConnection.QueryFirst<Guid?>("SELECT userId  FROM [dbo].[Passenger] where Id=@Id ", DParameter6);
@@ -293,11 +291,11 @@ namespace Application.Trip.Req_Trip
                     {
                         //passenger1
                         var connectionId1 = await _redisServices.GetFromRedis(nearestDestReq[0].passengerId);
-                        await _hub.Clients.Client(connectionId1).BroadcastOutfitResultToPassnger(1);
+                        await _hub.Clients.Client(connectionId1).BroadcastOutfitResultToPassnger(1,null);
                         await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId , 1);
                         //passenger2
                         var connectionId2 = await _redisServices.GetFromRedis(nearestDestReq[1].passengerId);
-                        await _hub.Clients.Client(connectionId2).BroadcastOutfitResultToPassnger(1);
+                        await _hub.Clients.Client(connectionId2).BroadcastOutfitResultToPassnger(1,null);
                         await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[1].passengerId , 1);
                     }
                     //one Companion found another one not found
@@ -305,11 +303,11 @@ namespace Application.Trip.Req_Trip
                     {
                         //passenger1
                         var connectionId1 = await _redisServices.GetFromRedis(nearestDestReq[0].passengerId);
-                        await _hub.Clients.Client(connectionId1).BroadcastOutfitResultToPassnger(1);
+                        await _hub.Clients.Client(connectionId1).BroadcastOutfitResultToPassnger(1,null);
                         await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[0].passengerId, 1);
                         //passenger2
                         var connectionId2 = await _redisServices.GetFromRedis(nearestDestReq[1].passengerId);
-                        await _hub.Clients.Client(connectionId2).BroadcastOutfitResultToPassnger(1);
+                        await _hub.Clients.Client(connectionId2).BroadcastOutfitResultToPassnger(1,null);
                         await _unitOfWork.TripReq.UpdateIsFinishTripReq(nearestDestReq[1].passengerId, 1);
                     }
 
@@ -336,7 +334,35 @@ namespace Application.Trip.Req_Trip
                     var locModel1 = _dbConnection.QueryFirst<LocationModel>("SELECT *  FROM [dbo].[LocationModel] where Id=@Id ", DParameter5);
 
 
+                    //price1
+                    var distance1 = await _unitOfWork.TripReq.GetDistance(request.sourceAndDest.SLatitude, request.sourceAndDest.SLongitude,
+                    request.sourceAndDest.DLatitude, request.sourceAndDest.DLongitude);
+                    var firstPrice1 = distance1 * 4000;
+
+                    //price2
+                    var distance2 = await _unitOfWork.TripReq.GetDistance(locModel.SLatitude, locModel.SLongitude,
+                    locModel.DLatitude, locModel.DLongitude);
+                    var firstPrice2 = distance1 * 4000;
+
+                    //price3
+                    var distance3 = await _unitOfWork.TripReq.GetDistance(locModel1.SLatitude, locModel1.SLongitude,
+                    locModel1.DLatitude, locModel1.DLongitude);
+                    var firstPrice3 = distance1 * 4000;
+
+
+
+                    double[] numbers = new double[] { firstPrice1, firstPrice2, firstPrice3 };
+                    double maximumNumber = numbers.Max();
+                    var mainPrice = firstPrice1 + firstPrice2 + firstPrice3;
+                    var mainDriverPrice = maximumNumber + maximumNumber / 2;
+                        var mainPrice1 = firstPrice1 * mainDriverPrice / mainPrice;
+                        var mainPrice2 = firstPrice2 * mainDriverPrice / mainPrice;
+                        var mainPrice3 = firstPrice2 * mainDriverPrice / mainPrice;
+
                    
+
+
+
 
                     Core.Entities.DataModels.PreTrip pretrip1 = new()
                     {
@@ -346,6 +372,7 @@ namespace Application.Trip.Req_Trip
                         DLatitude1 = request.sourceAndDest.DLatitude,
                         username1 = user.username,
                         phoneNo1 = user.phoneNo,
+                        Price1 = $"{mainPrice1}",
                         //2
                         SLongitude2 = locModel.SLongitude,
                         SLatitude2 = locModel.SLatitude,
@@ -353,6 +380,7 @@ namespace Application.Trip.Req_Trip
                         DLatitude2 = locModel.DLatitude,
                         username2 = user4.username,
                         phoneNo2 = user4.phoneNo,
+                        Price2 = $"{mainPrice2}",
                         //3
                         SLongitude3 = locModel.SLongitude,
                         SLatitude3 = locModel.SLatitude,
@@ -360,6 +388,7 @@ namespace Application.Trip.Req_Trip
                         DLatitude3 = locModel.DLatitude,
                         username3 = user4.username,
                         phoneNo3 = user4.phoneNo,
+                        Price3 = $"{mainPrice3}",
                         //
                         Id = Guid.NewGuid(),
                         IsProcessed = false
@@ -372,10 +401,8 @@ namespace Application.Trip.Req_Trip
                     foreach (var driver in nearestDriverSourseReq)
                     {
                         var connectionId = await _redisServices.GetFromRedis(driver.DriverId);
-                        //await _hub.Clients.Client(connectionId).BroadcastTripToDriver("broadcastTripList", preTrips);
                         pretripList.Add(pretrip1);
                         await _hub.Clients.Client(connectionId).BroadcastTripToDriver(pretripList);
-                        //await _hub.invoke(SendToList);
 
                     };
 

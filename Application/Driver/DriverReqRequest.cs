@@ -42,17 +42,6 @@ namespace Application.Driver
                 var result = new Result<List<PreTrip>>();
 
 
-                //insert in LocationModel
-                //Core.Entities.LocationModel locationModel = new()
-                //{
-                //    SLatitude = request.sourceAndDest.SLatitude,
-                //    SLongitude = request.sourceAndDest.SLongitude,
-                //    DLatitude = request.sourceAndDest.DLatitude,
-                //    DLongitude = request.sourceAndDest.DLongitude,
-                //    Id = Guid.NewGuid()
-                //};
-
-                //await _unitOfWork.LocRep.InsertLoc(locationModel);
                 try
                 {
 

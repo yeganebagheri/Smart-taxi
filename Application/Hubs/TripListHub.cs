@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Hubs
 {
-    //[Authorize]
+    
     public class TripListHub :  Hub<IHubService>
     {
       
@@ -22,10 +22,9 @@ namespace Application.Hubs
         {
             _mediator = mediator;
             _redisServices = redisServices;
-            //var result = JsonConvert.SerializeObject(emp);
         }
 
-       // DriverReqRequestModel emp = new DriverReqRequestModel();
+       
         
         // get location of driver
         public async Task SendRequest(string SLatitude, string SLongitude, string DriverId)
@@ -38,7 +37,6 @@ namespace Application.Hubs
                 DriverId = DriverId
             };
             var res = await _mediator.Send(driverReq1); 
-          // await _redisServices.SetInRedis(new Guid(driverReq1.DriverId), Context.ConnectionId);
             // return message;
             await Clients.Client(Context.ConnectionId).BroadcastTripToDriver(res);
 
@@ -58,8 +56,8 @@ namespace Application.Hubs
            
             var httpCtx = Context.GetHttpContext();
             var someHeaderValue = httpCtx.Request.Query["access_token"].ToString();
-            string[] driverId = someHeaderValue.Split(',');
-            var Id = driverId[0];
+            string[] driverOrPassId = someHeaderValue.Split(',');
+            var Id = driverOrPassId[0];
             await _redisServices.SetInRedis(new Guid(Id), Context.ConnectionId);
             await base.OnConnectedAsync();
         }

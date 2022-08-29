@@ -12,7 +12,7 @@ namespace Core.Entities.DataModels
     {
         public Guid Id { get; set; }
         public bool IsProcessed { get; set; }
-
+        
         //1
         public double SLongitude1 { get; set; }
         public double SLatitude1 { get; set; }
@@ -20,7 +20,7 @@ namespace Core.Entities.DataModels
         public double DLatitude1 { get; set; }
         public string username1 { get; set; }
         public string phoneNo1 { get; set; }
-
+        public string Price1 { get; set; }
         //2
         public double? SLongitude2 { get; set; }
         public double? SLatitude2 { get; set; }
@@ -28,7 +28,7 @@ namespace Core.Entities.DataModels
         public double? DLatitude2 { get; set; }
         public string username2 { get; set; }
         public string phoneNo2 { get; set; }
-
+        public string Price2 { get; set; }
         //3
         public double? SLongitude3 { get; set; }
         public double? SLatitude3 { get; set; }
@@ -36,6 +36,6 @@ namespace Core.Entities.DataModels
         public double? DLatitude3 { get; set; }
         public string username3 { get; set; }
         public string phoneNo3 { get; set; }
-
+        public string Price3 { get; set; }
     }
 }

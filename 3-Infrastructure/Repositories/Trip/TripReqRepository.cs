@@ -71,6 +71,28 @@ namespace _3_Infrastructure.Repositories.Trip
 
         }
 
+        public async Task<double> GetDistance(double Slat, double Slong,
+            double Dlat, double Dlong)
+        {
+
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Slat", Slat);
+            parameters.Add("@Slong", Slong);
+            parameters.Add("@Dlat", Dlat);
+            parameters.Add("@Dlong", Dlong);
+
+            var NearestTripReqList = await _dbConnection.QueryFirstAsync<double>(
+             sql: "SELECT dbo.uf_CalculateDistance(@Slat , @Dlong , @Dlat , @Dlong)",
+                param: parameters,
+                 commandType: CommandType.Text);
+
+            return NearestTripReqList;
+
+
+
+        }
+
+
 
 
 
@@ -101,3 +123,4 @@ namespace _3_Infrastructure.Repositories.Trip
 
     }
 }
+//result = _connection.Query<dynamic>("SELECT dbo.functionName(@Parm)", new {Parm = 123},commandType: CommandType.Text);

@@ -48,31 +48,28 @@ namespace Application.Auth
                     return result.WithError("کاربر پیدا نشد. لطفا ثبت نام کنید.");
                 }
 
-                var DParameter = new DynamicParameters();
-                DParameter.Add("@PhoneNo", request.PhoneNo);
-                var user1 = _unitOfWork.DbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where phoneNo=@PhoneNo ", DParameter);
-                if (user1.role == 1)
+                if (user.role == 1)
                 {
                     var DParameter1 = new DynamicParameters();
-                    DParameter1.Add("@UserId", user1.Id);
+                    DParameter1.Add("@UserId", user.Id);
                     var PassengerId = _unitOfWork.DbConnection.QueryFirst<Guid>("SELECT Id  FROM [dbo].[Passenger] where userId=@UserId ", DParameter1);
                     LoginDto loginDto = new()
                     {
-                        user = user1,
+                        user = user,
                         passOrDriverId = PassengerId
                     };
                     result.WithSuccess("با موفقیت وارد شدید!");
                     result.WithValue(loginDto);
                 }
-                else if (user1.role ==2)
+                else if (user.role ==2)
                 {
                     var DParameter2 = new DynamicParameters();
-                    DParameter2.Add("@UserId", user1.Id);
+                    DParameter2.Add("@UserId", user.Id);
                     var DriverId = _unitOfWork.DbConnection.QueryFirst<Guid>("SELECT Id  FROM [dbo].[Driver] where userId=@UserId ", DParameter2);
                     result.WithSuccess("با موفقیت وارد شدید!");
                     LoginDto loginDto = new()
                     {
-                        user = user1,
+                        user = user,
                         passOrDriverId = DriverId
                     };
                     result.WithValue(loginDto);

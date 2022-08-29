@@ -38,7 +38,7 @@ namespace Api.Controllers
 
        
         [HttpPost("Register")]
-        public async Task<ActionResult<FluentResults.Result<Guid>>> CreateAdmin(RegisterRequest request)
+        public async Task<ActionResult<FluentResults.Result<Guid>>> Register(RegisterRequest request)
         {
 
             FluentResults.Result<Guid> result = await Mediator.Send(request);

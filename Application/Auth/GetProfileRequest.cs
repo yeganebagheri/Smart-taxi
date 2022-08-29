@@ -34,12 +34,7 @@ namespace Application.Auth
             {
 
                 var result = new Result<ProfileDto>();
-                //var user = await _unitOfWork.Users.GetUserByPhone(request.PhoneNo);
-                ////user exists
-                //if (user == null)
-                //{
-                //    return result.WithError("شماره موبایل وارد شده اشتباه است. لطفا دوباره تلاش کنید.");
-                //}
+                
                 var user = await _unitOfWork.Users.GetUser(request.UserId);
 
                 if (user == null)
@@ -47,9 +42,6 @@ namespace Application.Auth
                     return result.WithError("کاربر پیدا نشد. لطفا ثبت نام کنید.");
                 }
 
-                //var DParameter = new DynamicParameters();
-                //DParameter.Add("@PhoneNo", request.PhoneNo);
-                //var user1 = _unitOfWork.DbConnection.QueryFirst<User>("SELECT *  FROM [dbo].[User] where phoneNo=@PhoneNo ", DParameter);
                 if (user.role == 1)
                 {
                     var DParameter1 = new DynamicParameters();

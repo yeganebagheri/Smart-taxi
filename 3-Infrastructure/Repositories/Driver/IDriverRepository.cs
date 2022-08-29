@@ -1,4 +1,5 @@
-﻿using Dapper.FastCrud;
+﻿using Dapper;
+using Dapper.FastCrud;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,6 +12,7 @@ namespace _3_Infrastructure.Repositories.Driver
     public interface IDriverRepository
     {
         public Task InsertDriver(Core.Entities.Driver driver);
+        public Task UpdateIsReadyDriverReq(Guid driverId);
     }
 
     public class DriverRepository : IDriverRepository
@@ -27,6 +29,16 @@ namespace _3_Infrastructure.Repositories.Driver
 
 
         }
+
+        public async Task UpdateIsReadyDriverReq(Guid driverId)
+        {
+            var DParameter = new DynamicParameters();
+            DParameter.Add("@Id", driverId);
+            await _dbConnection.QueryAsync("UPDATE [dbo].[DriverReq] SET IsReady = 1 where DriverId=@Id ", DParameter);
+        }
+
+
+
     }
 
 }

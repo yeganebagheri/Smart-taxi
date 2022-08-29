@@ -22,7 +22,7 @@ using Microsoft.AspNetCore.Http;
 using static Application.Auth.RegisterRequest;
 using Application;
 using _3_Infrastructure.Repositories.Trip;
-using Online_Taxi.Hubs;
+//using Online_Taxi.Hubs;
 using _3_Infrastructure.Repositories.Passenger;
 using _3_Infrastructure.Repositories.Driver;
 using _3_Infrastructure.Repositories.Driver.Driver_req;
@@ -136,8 +136,7 @@ namespace Online_Taxi
 
             services.AddScoped<IDbConnection>((sp) => new SqlConnection(Configuration["ConnectionStrings:DefaultConnection"]));
 
-            services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
-
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
