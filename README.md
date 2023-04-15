@@ -17,6 +17,10 @@ The traveler specifies the origin and destination on the map and specifies the n
 
 ![image](https://user-images.githubusercontent.com/83599883/232256047-cf805ab5-c368-4fdd-89f3-ab62aa48e973.png)
 
+After registering a travel request by a passenger, the system searches for other passengers who have requested at the same time and are in the nearby area.
+
+![image](https://user-images.githubusercontent.com/83599883/232256474-34203137-ce0d-4f37-b43e-7ce763f6f4d1.png)
+
 After the driver accepts the request, the driver's profile will be shown to the passenger.
 
 ![image](https://user-images.githubusercontent.com/83599883/232256078-b507edd5-563c-4790-8462-afc19eabcaca.png)
@@ -29,10 +33,6 @@ After entering his page, the driver sees the following page.
 By choosing the option of choosing a location on the map, you will be transferred to a page where you can choose your location on the map.
 
 ![image](https://user-images.githubusercontent.com/83599883/232256248-e105eb74-9fea-4976-82e5-0a93dd2ef7d9.png)
-After registering a travel request by a passenger, the system searches for other passengers who have requested at the same time and are in the nearby area.
-
-![image](https://user-images.githubusercontent.com/83599883/232256474-34203137-ce0d-4f37-b43e-7ce763f6f4d1.png)
-
 
 ![image](https://user-images.githubusercontent.com/83599883/232256261-d60f3a54-37f7-4b58-9584-345a5b12f61c.png)
 
