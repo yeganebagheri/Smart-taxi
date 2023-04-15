@@ -21,19 +21,6 @@ After the driver accepts the request, the driver's profile will be shown to the 
 
 ![image](https://user-images.githubusercontent.com/83599883/232256078-b507edd5-563c-4790-8462-afc19eabcaca.png)
 
-profile
-
-![image](https://user-images.githubusercontent.com/83599883/232256125-e1f78693-6b38-4211-aa2a-ee63ecd6281d.png)
-
-If the user is a driver
-
-![image](https://user-images.githubusercontent.com/83599883/232256133-20f024c2-87de-480d-a1b9-05eba427b4e2.png)
-
-log out
-This option, which is in the profile section, in the left corner, allows the user to leave his personal page.
-
-![image](https://user-images.githubusercontent.com/83599883/232256174-4e90f6cf-9018-48bc-b66f-a58501a648c6.png)
-
 Driver dashboard
 After entering his page, the driver sees the following page.
 
@@ -53,6 +40,19 @@ Travel details
 After accepting the trip, the driver sees the details of the trip and passengers:
 
 ![image](https://user-images.githubusercontent.com/83599883/232256312-5668afc6-084c-49fa-8060-a4ce6d8e258b.png)
+
+profile
+
+![image](https://user-images.githubusercontent.com/83599883/232256125-e1f78693-6b38-4211-aa2a-ee63ecd6281d.png)
+
+If the user is a driver
+
+![image](https://user-images.githubusercontent.com/83599883/232256133-20f024c2-87de-480d-a1b9-05eba427b4e2.png)
+
+log out
+This option, which is in the profile section, in the left corner, allows the user to leave his personal page.
+
+![image](https://user-images.githubusercontent.com/83599883/232256174-4e90f6cf-9018-48bc-b66f-a58501a648c6.png)
 
 
 
