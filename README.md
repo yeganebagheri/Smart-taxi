@@ -30,6 +30,9 @@ By choosing the option of choosing a location on the map, you will be transferre
 
 ![image](https://user-images.githubusercontent.com/83599883/232256248-e105eb74-9fea-4976-82e5-0a93dd2ef7d9.png)
 
+![image](https://user-images.githubusercontent.com/83599883/232256474-34203137-ce0d-4f37-b43e-7ce763f6f4d1.png)
+After registering a travel request by a passenger, the system searches for other passengers who have requested at the same time and are in the nearby area.
+
 ![image](https://user-images.githubusercontent.com/83599883/232256261-d60f3a54-37f7-4b58-9584-345a5b12f61c.png)
 
 Viewing the list of travel requests registered by passengers to the driver
